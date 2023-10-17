@@ -10,13 +10,21 @@
     "typecheck": "tsc"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.17",
     "@remix-run/css-bundle": "^2.1.0",
     "@remix-run/node": "^2.1.0",
     "@remix-run/react": "^2.1.0",
     "@remix-run/serve": "^2.1.0",
+    "@storyblok/react": "^2.4.7",
+    "clsx": "^2.0.0",
+    "date-fns": "^2.30.0",
     "isbot": "^3.6.8",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-headroom": "^3.2.1",
+    "react-icons": "^4.11.0",
+    "react-syntax-highlighter": "^15.5.0",
+    "storyblok-rich-text-react-renderer": "^2.9.0"
   },
   "devDependencies": {
     "@remix-run/dev": "^2.1.0",
