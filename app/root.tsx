@@ -15,8 +15,8 @@ import {
 } from "@remix-run/react";
 import styles from "./styles/tailwind.css";
 import { storyblokInit, apiPlugin, getStoryblokApi } from "@storyblok/react";
-
-import { Page } from "./components/bloks";
+import { Layout } from "./components/layout";
+import { Page, SocialItem, NavItem } from "./components/bloks";
 
 const isServer = typeof window === "undefined";
 
@@ -57,6 +57,8 @@ export const meta: MetaFunction = () => {
 
 const components = {
   page: Page,
+  "social-item": SocialItem,
+  "nav-item": NavItem,
 };
 
 storyblokInit({
@@ -78,7 +80,9 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <Outlet />
+        <Layout>
+          <Outlet />
+        </Layout>
         <script
           dangerouslySetInnerHTML={{
             __html: `window.env = ${JSON.stringify(env)}`,

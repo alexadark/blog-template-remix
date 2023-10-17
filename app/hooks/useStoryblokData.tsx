@@ -1,6 +1,6 @@
 import { useLoaderData } from "@remix-run/react";
-
 import { useStoryblokState, StoryblokComponent } from "@storyblok/react";
+import { type loader } from "~/routes/$";
 
 export const useStoryblokData = () => {
   const data = useLoaderData<typeof loader>();
