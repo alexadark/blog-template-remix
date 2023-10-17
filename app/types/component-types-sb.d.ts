@@ -1,14 +1,18 @@
 import {StoryblokStory} from 'storyblok-generate-ts'
 
-export interface AllCategoriesStoryblok {
-  headline?: string;
-  _uid: string;
-  component: "all-categories";
+export interface RichtextStoryblok {
+  type: string;
+  content?: RichtextStoryblok[];
+  marks?: RichtextStoryblok[];
+  attrs?: any;
+  text?: string;
   [k: string]: any;
 }
 
 export interface AllPostsStoryblok {
   headline?: string;
+  intro?: RichtextStoryblok;
+  grid?: boolean;
   _uid: string;
   component: "all-posts";
   [k: string]: any;
@@ -27,7 +31,21 @@ export interface AssetStoryblok {
 
 export interface AuthorStoryblok {
   avatar?: AssetStoryblok;
-  bio?: string;
+  bio?: RichtextStoryblok;
+  seo_plugin?: {
+    _uid?: string;
+    title?: string;
+    plugin?: string;
+    og_image?: string;
+    og_title?: string;
+    description?: string;
+    twitter_image?: string;
+    twitter_title?: string;
+    og_description?: string;
+    twitter_description?: string;
+    [k: string]: any;
+  };
+  twitter?: string;
   _uid: string;
   component: "author";
   [k: string]: any;
@@ -37,8 +55,28 @@ export interface CategoryStoryblok {
   headline?: string;
   image?: AssetStoryblok;
   description?: string;
+  seo_plugin?: {
+    _uid?: string;
+    title?: string;
+    plugin?: string;
+    og_image?: string;
+    og_title?: string;
+    description?: string;
+    twitter_image?: string;
+    twitter_title?: string;
+    og_description?: string;
+    twitter_description?: string;
+    [k: string]: any;
+  };
+  grid?: boolean;
   _uid: string;
   component: "category";
+  [k: string]: any;
+}
+
+export interface CodeBlockStoryblok {
+  _uid: string;
+  component: "code-block";
   [k: string]: any;
 }
 
@@ -51,20 +89,11 @@ export interface CommentStoryblok {
   [k: string]: any;
 }
 
-export interface RichtextStoryblok {
-  type: string;
-  content?: RichtextStoryblok[];
-  marks?: RichtextStoryblok[];
-  attrs?: any;
-  text?: string;
-  [k: string]: any;
-}
-
 export interface ConfigStoryblok {
   header_nav?: NavItemStoryblok[];
   social_items?: SocialItemStoryblok[];
   footer_text?: RichtextStoryblok;
-  footer_columns?: FooterColumnStoryblok[];
+  posts_per_page?: string;
   _uid: string;
   component: "config";
   [k: string]: any;
@@ -133,17 +162,10 @@ export interface ContentStoryblok {
   [k: string]: any;
 }
 
-export interface FooterColumnStoryblok {
-  headline?: string;
-  footer_menu?: NavItemStoryblok[];
-  _uid: string;
-  component: "footer-column";
-  [k: string]: any;
-}
-
 export interface LastPostsStoryblok {
   headline?: string;
   number_of_posts?: string;
+  grid?: boolean;
   _uid: string;
   component: "last-posts";
   [k: string]: any;
@@ -184,21 +206,28 @@ export interface PostStoryblok {
   headline?: string;
   image?: AssetStoryblok;
   teaser?: string;
-  content?: RichtextStoryblok;
+  post_content?: (CodeBlockStoryblok | ContentStoryblok)[];
   author?: StoryblokStory<AuthorStoryblok> | string;
   categories?: (StoryblokStory<CategoryStoryblok> | string)[];
   tags?: (StoryblokStory<TagStoryblok> | string)[];
-  seo?: SeoStoryblok[];
   comments?: (StoryblokStory<CommentStoryblok> | string)[];
+  seo?: SeoStoryblok[];
+  seo_plugin?: {
+    _uid?: string;
+    title?: string;
+    plugin?: string;
+    og_image?: string;
+    og_title?: string;
+    description?: string;
+    twitter_image?: string;
+    twitter_title?: string;
+    og_description?: string;
+    twitter_description?: string;
+    [k: string]: any;
+  };
+  related_posts?: (StoryblokStory<PostStoryblok> | string)[];
   _uid: string;
   component: "post";
-  [k: string]: any;
-}
-
-export interface PostsArchiveStoryblok {
-  headline?: string;
-  _uid: string;
-  component: "posts-archive";
   [k: string]: any;
 }
 
@@ -227,6 +256,20 @@ export interface SocialItemStoryblok {
 export interface TagStoryblok {
   headline?: string;
   description?: string;
+  seo_plugin?: {
+    _uid?: string;
+    title?: string;
+    plugin?: string;
+    og_image?: string;
+    og_title?: string;
+    description?: string;
+    twitter_image?: string;
+    twitter_title?: string;
+    og_description?: string;
+    twitter_description?: string;
+    [k: string]: any;
+  };
+  grid?: boolean;
   _uid: string;
   component: "tag";
   [k: string]: any;
