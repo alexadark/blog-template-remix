@@ -22,6 +22,7 @@ import {
   NavItem,
   Content,
   AllPosts,
+  Post,
 } from "./components/bloks";
 
 const isServer = typeof window === "undefined";
@@ -67,6 +68,7 @@ const components = {
   "nav-item": NavItem,
   content: Content,
   "all-posts": AllPosts,
+  post: Post,
 };
 
 storyblokInit({
