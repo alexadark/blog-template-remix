@@ -34,10 +34,14 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
     is_startpage: false,
     resolve_relations: resolveRelations,
   });
-  const seo = data?.story?.content?.seo;
+  const story = data?.story;
+
+  const seo = story?.content?.seo_plugin?.title
+    ? story?.content?.seo_plugin
+    : story?.content?.seo[0];
 
   return json({
-    story: data?.story,
+    story,
     posts: blog.stories,
     lastPosts: lastPosts.stories,
     seo,

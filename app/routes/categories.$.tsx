@@ -19,7 +19,11 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
     is_startpage: false,
   });
 
-  const seo = data?.story?.content?.seo_plugin;
+  const story = data?.story;
+
+  const seo = story?.content?.seo_plugin?.title
+    ? story?.content?.seo_plugin
+    : story?.content?.seo[0];
 
   let page = Number.isNaN(Number(params.pageNumber))
     ? 1
@@ -52,7 +56,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
   let total = response?.headers.get("total");
 
   return json({
-    story: data?.story,
+    story,
     posts: postsByCategory?.stories,
     categories: categories?.stories,
     perPage,

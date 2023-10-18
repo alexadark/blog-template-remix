@@ -1,24 +1,18 @@
 import { json } from "@remix-run/node";
 import { useStoryblokData } from "~/hooks";
-import { getStoryblokApi } from "@storyblok/react";
 import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
-import { getSeo, getPostCardData } from "~/utils";
-import type { PostStoryblok } from "~/types";
+import { getSeo } from "~/utils";
+import { getStoryblokApi } from "@storyblok/react";
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   let slug = params["*"] ?? "home";
+  const resolveRelations = ["post.categories", "post.tags", "post.author"];
   const sbApi = getStoryblokApi();
-  const resolveRelations = [
-    "post.categories",
-    "post.tags",
-    "post.author",
-    "post.comments",
-  ];
 
-  const { data } = await sbApi.get(`cdn/stories/blog/${slug}`, {
+  const { data } = await getStoryblokApi().get(`cdn/stories/tags/${slug}`, {
     version: "draft",
-    resolve_relations: resolveRelations,
   });
+
   let page = Number.isNaN(Number(params.pageNumber))
     ? 1
     : Number(params.pageNumber);
@@ -29,36 +23,36 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
   });
 
   let perPage = config?.story?.content?.posts_per_page;
-
-  const { data: blog } = await sbApi.get(`cdn/stories`, {
+  const { data: postsByTag } = await sbApi.get(`cdn/stories/`, {
     version: "draft",
     starts_with: "blog/",
+    is_startpage: false,
     per_page: perPage,
     page,
-    is_startpage: false,
     resolve_relations: resolveRelations,
+    filter_query: {
+      tags: {
+        in_array: data.story.uuid,
+      },
+    },
   });
 
   let response = await fetch(
-    `https://api.storyblok.com/v2/cdn/stories?token=${process.env.STORYBLOK_PREVIEW_TOKEN}&starts_with=blog/&version=draft/&per_page=20&is_startpage=false`
+    `https://api.storyblok.com/v2/cdn/stories?token=${process.env.STORYBLOK_PREVIEW_TOKEN}&starts_with=blog/&version=draft&is_startpage=false&filter_query[tags][in_array]=${data.story.uuid}`
   );
-  let total = await response?.headers.get("total");
+  let total = response?.headers.get("total");
+
   const story = data?.story;
 
   const seo = story?.content?.seo_plugin?.title
     ? story?.content?.seo_plugin
     : story?.content?.seo[0];
 
-  const posts = blog?.stories?.map((p: PostStoryblok) => getPostCardData(p));
-
   return json({
     story,
-    publishDate: data?.story?.published_at,
-    id: data?.story?.id,
-    name: data?.story?.name,
-    posts,
-    total,
+    posts: postsByTag?.stories,
     perPage,
+    total,
     seo,
   });
 };
@@ -67,6 +61,6 @@ export const meta: MetaFunction = ({ data }: { data: any }) => {
   return getSeo(data.seo, data.story.name);
 };
 
-const PostPage = () => useStoryblokData();
+const TagPage = () => useStoryblokData();
 
-export default PostPage;
+export default TagPage;

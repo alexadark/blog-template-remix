@@ -33,7 +33,7 @@
       "name": "author",
       "display_name": null,
       "created_at": "2023-10-17T08:15:16.661Z",
-      "updated_at": "2023-10-17T08:15:16.661Z",
+      "updated_at": "2023-10-18T10:37:43.944Z",
       "id": 4737048,
       "schema": {
         "avatar": {
@@ -48,7 +48,8 @@
         "tab-5f9e8135-80bd-4415-b7b9-981b3acab455": {
           "display_name": "Seo",
           "keys": [
-            "seo_plugin"
+            "seo_plugin",
+            "seo"
           ],
           "pos": 0,
           "type": "tab"
@@ -60,6 +61,14 @@
         },
         "twitter": {
           "type": "text"
+        },
+        "seo": {
+          "type": "bloks",
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": [
+            "seo"
+          ]
         }
       },
       "image": null,
@@ -78,20 +87,38 @@
       "name": "category",
       "display_name": null,
       "created_at": "2023-10-17T08:15:16.676Z",
-      "updated_at": "2023-10-17T08:15:16.676Z",
+      "updated_at": "2023-10-18T11:14:24.579Z",
       "id": 4737049,
       "schema": {
+        "seo": {
+          "type": "bloks",
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": [
+            "seo"
+          ],
+          "pos": 0,
+          "minimum": 1,
+          "maximum": 1
+        },
+        "seo_plugin": {
+          "type": "custom",
+          "field_type": "seo-metatags",
+          "options": [],
+          "pos": 1
+        },
         "headline": {
           "type": "text",
-          "pos": 0,
+          "pos": 2,
           "translatable": true
         },
         "tab-b6c77404-36ca-4542-b1f8-a8f0ff13b877": {
           "display_name": "Seo",
           "keys": [
-            "seo_plugin"
+            "seo_plugin",
+            "seo"
           ],
-          "pos": 0,
+          "pos": 3,
           "type": "tab"
         },
         "image": {
@@ -99,20 +126,16 @@
           "filetypes": [
             "images"
           ],
-          "pos": 1
+          "pos": 4
         },
         "description": {
           "type": "textarea",
-          "pos": 2,
+          "pos": 5,
           "translatable": true
         },
-        "seo_plugin": {
-          "type": "custom",
-          "field_type": "seo-metatags",
-          "options": []
-        },
         "grid": {
-          "type": "boolean"
+          "type": "boolean",
+          "pos": 6
         }
       },
       "image": null,
@@ -648,32 +671,48 @@
       "name": "tag",
       "display_name": null,
       "created_at": "2023-10-17T08:15:16.600Z",
-      "updated_at": "2023-10-17T08:15:16.600Z",
+      "updated_at": "2023-10-18T11:13:57.875Z",
       "id": 4737044,
       "schema": {
-        "headline": {
-          "type": "text",
-          "translatable": true
-        },
-        "description": {
-          "type": "textarea",
-          "translatable": true
-        },
-        "tab-42670311-31db-4dc4-bcd2-8e112ad403ca": {
-          "display_name": "Seo",
-          "keys": [
-            "seo_plugin"
+        "seo": {
+          "type": "bloks",
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": [
+            "seo"
           ],
           "pos": 0,
-          "type": "tab"
+          "minimum": 1,
+          "maximum": 1
         },
         "seo_plugin": {
           "type": "custom",
           "field_type": "seo-metatags",
-          "options": []
+          "options": [],
+          "pos": 1
+        },
+        "headline": {
+          "type": "text",
+          "translatable": true,
+          "pos": 2
+        },
+        "description": {
+          "type": "textarea",
+          "translatable": true,
+          "pos": 3
+        },
+        "tab-42670311-31db-4dc4-bcd2-8e112ad403ca": {
+          "display_name": "Seo",
+          "keys": [
+            "seo_plugin",
+            "seo"
+          ],
+          "pos": 4,
+          "type": "tab"
         },
         "grid": {
-          "type": "boolean"
+          "type": "boolean",
+          "pos": 5
         }
       },
       "image": null,

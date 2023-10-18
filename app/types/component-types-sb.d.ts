@@ -46,15 +46,14 @@ export interface AuthorStoryblok {
     [k: string]: any;
   };
   twitter?: string;
+  seo?: SeoStoryblok[];
   _uid: string;
   component: "author";
   [k: string]: any;
 }
 
 export interface CategoryStoryblok {
-  headline?: string;
-  image?: AssetStoryblok;
-  description?: string;
+  seo?: SeoStoryblok[];
   seo_plugin?: {
     _uid?: string;
     title?: string;
@@ -68,6 +67,9 @@ export interface CategoryStoryblok {
     twitter_description?: string;
     [k: string]: any;
   };
+  headline?: string;
+  image?: AssetStoryblok;
+  description?: string;
   grid?: boolean;
   _uid: string;
   component: "category";
@@ -254,8 +256,7 @@ export interface SocialItemStoryblok {
 }
 
 export interface TagStoryblok {
-  headline?: string;
-  description?: string;
+  seo?: SeoStoryblok[];
   seo_plugin?: {
     _uid?: string;
     title?: string;
@@ -269,6 +270,8 @@ export interface TagStoryblok {
     twitter_description?: string;
     [k: string]: any;
   };
+  headline?: string;
+  description?: string;
   grid?: boolean;
   _uid: string;
   component: "tag";
