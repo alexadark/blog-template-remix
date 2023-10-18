@@ -1,5 +1,6 @@
 import { Link } from "@remix-run/react";
 import { SlideSidebar } from "./SlideSidebar";
+import { Search } from "~/components/search";
 
 export const Header = () => {
   return (
@@ -12,6 +13,7 @@ export const Header = () => {
         </Link>
         <div className="flex justify-between gap-5">
           <SlideSidebar className="mt-2 xl:hidden" />
+          <Search />
         </div>
       </div>
     </header>
