@@ -4,17 +4,17 @@ import { format } from "date-fns";
 import type { PostStoryblok } from "~/types";
 import { Categories } from "~/components/Categories";
 import type { loader } from "~/routes/blog.$";
-// import Tags from "~/components/Tags";
-// import DisqusComments from "~/components/DisqusComments";
-// import SocialShare from "~/components/SocialShare";
-// import AuthorBox from "~/components/AuthorBox";
+import { Tags } from "~/components/Tags";
+import { DisqusComments } from "~/components/DisqusComments";
+import { SocialShare } from "~/components/SocialShare";
+import { AuthorBox } from "~/components/AuthorBox";
 
 export const Post = ({ blok }: PostStoryblok) => {
   const { publishDate, id, name } = useLoaderData<typeof loader>();
 
   const { headline, categories, image, tags, author, post_content } = blok;
 
-  // const url = typeof window !== "undefined" && window.location.href;
+  const url = typeof window !== "undefined" && window.location.href;
   return (
     <>
       <article
@@ -35,28 +35,28 @@ export const Post = ({ blok }: PostStoryblok) => {
           />
         )}
         <h1>{headline}</h1>
-        {/* <Tags tags={tags} className="space-x-2" /> */}
+        <Tags tags={tags} className="space-x-2" />
 
         {post_content?.map((nestedBlok: any) => (
           <StoryblokComponent blok={nestedBlok} key={nestedBlok._uid} />
         ))}
 
-        {/* <div className="flex justify-center xl:hidden">
+        <div className="flex justify-center xl:hidden">
           <AuthorBox author={author} component={"author"} />
         </div>
-        {url && <SocialShare url={url} />} */}
+        {url && <SocialShare url={url} />}
       </article>
 
-      {/* <aside className="fixed z-10 top-[4.6rem] bottom-0 right-[max(0px,calc(50%-45rem))] w-[19.5rem] py-6 px-8 overflow-y-auto hidden xl:block">
+      <aside className="fixed z-10 top-[4.6rem] bottom-0 right-[max(0px,calc(50%-45rem))] w-[19.5rem] py-6 px-8 overflow-y-auto hidden xl:block">
         <AuthorBox author={author} component={"author"} />
-      </aside> */}
+      </aside>
 
-      {/* <DisqusComments
+      <DisqusComments
         shortname="remix-blog"
         identifier={id}
         title={name}
         url={`${typeof window !== "undefined" && window.location.href}`}
-      /> */}
+      />
     </>
   );
 };

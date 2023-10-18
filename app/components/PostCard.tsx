@@ -10,6 +10,7 @@ interface PostCardType {
 
 export const PostCard = ({ post, grid }: PostCardType) => {
   const { headline, teaser, categories, image, date, slug } = post;
+  console.log("post", post);
 
   return (
     <article
