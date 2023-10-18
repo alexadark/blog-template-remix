@@ -51,7 +51,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
     return {
       date: p.published_at,
       id: p.id,
-      title: p.content.headline,
+      headline: p.content.headline,
       slug: p.full_slug,
       teaser: p.content.teaser,
       image: p.content.image,
