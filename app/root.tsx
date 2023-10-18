@@ -16,7 +16,13 @@ import {
 import styles from "./styles/tailwind.css";
 import { storyblokInit, apiPlugin, getStoryblokApi } from "@storyblok/react";
 import { Layout } from "./components/layout";
-import { Page, SocialItem, NavItem } from "./components/bloks";
+import {
+  Page,
+  SocialItem,
+  NavItem,
+  Content,
+  // CodeBlock,
+} from "./components/bloks";
 
 const isServer = typeof window === "undefined";
 
@@ -59,6 +65,8 @@ const components = {
   page: Page,
   "social-item": SocialItem,
   "nav-item": NavItem,
+  content: Content,
+  // "code-block": CodeBlock,
 };
 
 storyblokInit({
