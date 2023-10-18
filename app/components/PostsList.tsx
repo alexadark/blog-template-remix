@@ -4,6 +4,7 @@ import { useLoaderData } from "@remix-run/react";
 import type { PostStoryblok } from "~/types";
 import { PostCard } from "./PostCard";
 import type { loader } from "~/routes/blog.$";
+import { getPostCardData } from "~/utils";
 
 interface PostsListType {
   grid?: boolean;
@@ -13,7 +14,6 @@ export const PostsList = ({ grid, filterQuery = {} }: PostsListType) => {
   const [currentPage, setCurrentPage] = useState(1);
   const { posts: firstsPosts, total, perPage } = useLoaderData<typeof loader>();
   const [posts, setPosts] = useState(firstsPosts);
-  console.log("total", total, "posts", firstsPosts);
 
   const sbApi = getStoryblokApi();
   const resolveRelations = [
@@ -34,17 +34,9 @@ export const PostsList = ({ grid, filterQuery = {} }: PostsListType) => {
       filter_query: filterQuery,
     });
 
-    const nextPosts = blog.stories.map((p: PostStoryblok) => {
-      return {
-        date: p.published_at,
-        id: p.id,
-        title: p.content.headline,
-        slug: p.full_slug,
-        teaser: p.content.teaser,
-        image: p.content.image,
-        categories: p.content.categories,
-      };
-    });
+    const nextPosts = blog.stories.map((p: PostStoryblok) =>
+      getPostCardData(p)
+    );
 
     setPosts((prevPosts: PostStoryblok[]) => [...prevPosts, ...nextPosts]);
   };
