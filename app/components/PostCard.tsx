@@ -9,8 +9,12 @@ interface PostCardType {
 }
 
 export const PostCard = ({ post, grid }: PostCardType) => {
-  const { headline, teaser, categories, image, date, slug } = post;
-  console.log("post", post);
+  const { full_slug, published_at: date, content } = post;
+
+  const headline = post.headline ? post.headline : content.headline;
+  const teaser = post.teaser ? post.teaser : content.teaser;
+  const image = post.image ? post.image : content.image;
+  const categories = post.categories ? post.categories : content.categories;
 
   return (
     <article
@@ -18,7 +22,7 @@ export const PostCard = ({ post, grid }: PostCardType) => {
         !grid && "mb-7"
       } bg-dark-50 border border-dark-25  px-5 py-7 rounded-lg shadow-sm translate duration-500 hover:-translate-y-1 hover:shadow-primary relative`}
     >
-      <Link to={`/${slug}`}>
+      <Link to={`/${full_slug}`}>
         <div
           className={` ${
             grid ? "space-y-3" : "flex flex-wrap"
