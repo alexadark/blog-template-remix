@@ -23,6 +23,7 @@ import {
   Content,
   AllPosts,
   Post,
+  Category,
 } from "./components/bloks";
 
 const isServer = typeof window === "undefined";
@@ -69,6 +70,7 @@ const components = {
   content: Content,
   "all-posts": AllPosts,
   post: Post,
+  category: Category,
 };
 
 storyblokInit({

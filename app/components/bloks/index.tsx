@@ -4,3 +4,4 @@ export * from "./NavItem";
 export * from "./Content";
 export * from "./AllPosts";
 export * from "./Post";
+export * from "./Category";
