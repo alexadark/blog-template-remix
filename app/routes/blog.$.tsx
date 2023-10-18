@@ -2,7 +2,7 @@ import { json } from "@remix-run/node";
 import { useStoryblokData } from "~/hooks";
 import { getStoryblokApi } from "@storyblok/react";
 import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
-import { getSeo } from "~/utils";
+import { getSeo, getPostCardData } from "~/utils";
 import type { PostStoryblok } from "~/types";
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
@@ -47,17 +47,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
 
   const seo = story?.content?.seo_plugin ?? story?.content?.seo ?? {};
 
-  const posts = blog?.stories?.map((p: PostStoryblok) => {
-    return {
-      date: p.published_at,
-      id: p.id,
-      headline: p.content.headline,
-      slug: p.full_slug,
-      teaser: p.content.teaser,
-      image: p.content.image,
-      categories: p.content.categories,
-    };
-  });
+  const posts = blog?.stories?.map((p: PostStoryblok) => getPostCardData(p));
 
   return json({
     story,
