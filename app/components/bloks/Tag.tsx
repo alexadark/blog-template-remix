@@ -4,7 +4,7 @@ import type { TagStoryblok } from "~/types";
 import { PostsList } from "~/components/PostsList";
 import type { loader } from "~/routes/tags.$";
 
-const Tag = ({ blok }: TagStoryblok) => {
+export const Tag = ({ blok }: TagStoryblok) => {
   const { story } = useLoaderData<typeof loader>();
   const filterQuery = {
     tags: {
@@ -17,9 +17,7 @@ const Tag = ({ blok }: TagStoryblok) => {
         <h1>Posts for:{blok.headline}</h1>
         {blok.description ? <p>{blok.description}</p> : null}
       </div>
-      <PostsList grid={blok.grid} filterQuery={filterQuery} />
+      <PostsList grid={blok?.grid} filterQuery={filterQuery} />
     </div>
   );
 };
-
-export default Tag;

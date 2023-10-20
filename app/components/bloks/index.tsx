@@ -5,3 +5,4 @@ export * from "./Content";
 export * from "./AllPosts";
 export * from "./Post";
 export * from "./Category";
+export * from "./Tag";
