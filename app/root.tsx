@@ -25,6 +25,7 @@ import {
   Post,
   Category,
   Tag,
+  LastPosts,
 } from "./components/bloks";
 
 const isServer = typeof window === "undefined";
@@ -73,6 +74,7 @@ const components = {
   post: Post,
   category: Category,
   tag: Tag,
+  "last-posts": LastPosts,
 };
 
 storyblokInit({
