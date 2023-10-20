@@ -33,7 +33,7 @@
       "name": "author",
       "display_name": null,
       "created_at": "2023-10-17T08:15:16.661Z",
-      "updated_at": "2023-10-18T10:37:43.944Z",
+      "updated_at": "2023-10-20T11:48:03.038Z",
       "id": 4737048,
       "schema": {
         "avatar": {
@@ -69,6 +69,9 @@
           "component_whitelist": [
             "seo"
           ]
+        },
+        "grid": {
+          "type": "boolean"
         }
       },
       "image": null,

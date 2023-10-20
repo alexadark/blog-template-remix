@@ -7,3 +7,4 @@ export * from "./Post";
 export * from "./Category";
 export * from "./Tag";
 export * from "./LastPosts";
+export * from "./Author";

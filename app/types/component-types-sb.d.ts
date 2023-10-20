@@ -47,6 +47,7 @@ export interface AuthorStoryblok {
   };
   twitter?: string;
   seo?: SeoStoryblok[];
+  grid?: boolean;
   _uid: string;
   component: "author";
   [k: string]: any;
