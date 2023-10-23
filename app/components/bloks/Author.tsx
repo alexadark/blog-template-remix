@@ -1,8 +1,8 @@
-import { useLoaderData, Link } from "@remix-run/react";
+import { useLoaderData } from "@remix-run/react";
 import { storyblokEditable } from "@storyblok/react";
 import { render } from "storyblok-rich-text-react-renderer";
 import { PostsList } from "~/components/PostsList";
-import type { loader } from "~/routes/author.$";
+import type { loader } from "~/routes/authors.$";
 import type { AuthorStoryblok } from "~/types";
 
 export const Author = ({ blok }: AuthorStoryblok) => {

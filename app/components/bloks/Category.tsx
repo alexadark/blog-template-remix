@@ -5,10 +5,10 @@ import { PostsList } from "~/components/PostsList";
 import type { loader } from "~/routes/categories.$";
 
 export const Category = ({ blok }: CategoryStoryblok) => {
-  const { story } = useLoaderData<typeof loader>();
+  const { uuid } = useLoaderData<typeof loader>();
   const filterQuery = {
     categories: {
-      in_array: story.uuid,
+      in_array: uuid,
     },
   };
 

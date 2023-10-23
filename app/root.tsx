@@ -49,6 +49,7 @@ export const loader = async (args: LoaderFunctionArgs) => {
     headerNav: config?.story?.content?.header_nav,
     socialItems: config?.story?.content?.social_items,
     footerText: config?.story?.content?.footer_text,
+    perPage: config?.story?.content?.posts_per_page,
   });
 };
 

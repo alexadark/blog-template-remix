@@ -1,19 +1,29 @@
 import { useState } from "react";
 import { getStoryblokApi } from "@storyblok/react";
-import { useLoaderData } from "@remix-run/react";
+import { useMatches } from "@remix-run/react";
 import type { PostStoryblok } from "~/types";
 import { PostCard } from "./PostCard";
-import type { loader } from "~/routes/blog.$";
 import { getPostCardData } from "~/utils";
 
 interface PostsListType {
   grid?: boolean;
   filterQuery?: Object;
 }
+
+interface RouteData {
+  total: number;
+  posts: PostStoryblok[];
+}
 export const PostsList = ({ grid, filterQuery = {} }: PostsListType) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const { posts: firstsPosts, total, perPage } = useLoaderData<typeof loader>();
+  const matches = useMatches();
+  const globalData = matches[0].data;
+  const { total, posts: firstsPosts } = matches[1].data as RouteData;
   const [posts, setPosts] = useState(firstsPosts);
+
+  interface GlobalData {
+    perPage: number;
+  }
 
   const sbApi = getStoryblokApi();
   const resolveRelations = [
@@ -22,6 +32,8 @@ export const PostsList = ({ grid, filterQuery = {} }: PostsListType) => {
     "post.author",
     "post.comments",
   ];
+
+  const perPage = (globalData as GlobalData)?.perPage;
 
   const fetchPosts = async (page: number, filterQuery: Object) => {
     const { data: blog } = await sbApi.get(`cdn/stories`, {
@@ -50,8 +62,7 @@ export const PostsList = ({ grid, filterQuery = {} }: PostsListType) => {
     <div>
       <div className={grid ? "grid grid-cols-2 gap-5" : ""}>
         {posts?.map((p: PostStoryblok) => {
-          const post = p.content;
-          return <PostCard post={p} key={post?._uid} grid={grid} />;
+          return <PostCard post={p} key={p?.d} grid={grid} />;
         })}
       </div>
       {total && posts.length < total && (

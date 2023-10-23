@@ -1,7 +1,8 @@
 import { json } from "@remix-run/node";
 import { useStoryblokData } from "~/hooks";
 import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
-import { getSeo } from "~/utils";
+import { getSeo, getPostCardData } from "~/utils";
+import type { PostStoryblok } from "~/types";
 import { getStoryblokApi } from "@storyblok/react";
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
@@ -50,7 +51,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
 
   return json({
     story,
-    posts: postsByTag?.stories,
+    posts: postsByTag?.stories.map((p: PostStoryblok) => getPostCardData(p)),
     perPage,
     total,
     seo,

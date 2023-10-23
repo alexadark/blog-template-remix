@@ -2,7 +2,8 @@ import { json } from "@remix-run/node";
 import { useStoryblokData } from "~/hooks";
 import { getStoryblokApi } from "@storyblok/react";
 import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
-import { getSeo } from "~/utils";
+import { getSeo, getPostCardData } from "~/utils";
+import type { PostStoryblok } from "~/types";
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   let slug = params["*"] ?? "home";
@@ -45,7 +46,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
     resolve_relations: resolveRelations,
     filter_query: {
       authors: {
-        in_array: data.story.uuid,
+        all_in_array: data.story.uuid,
       },
     },
   });
@@ -54,10 +55,11 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
     `https://api.storyblok.com/v2/cdn/stories?token=${process.env.STORYBLOK_PREVIEW_TOKEN}&starts_with=blog/&version=draft&is_startpage=false&filter_query[authors][in_array]=${data.story.uuid}`
   );
   let total = response?.headers.get("total");
+  console.log("total", total);
 
   return json({
     story,
-    posts: postsByAuthor?.stories,
+    posts: postsByAuthor?.stories.map((p: PostStoryblok) => getPostCardData(p)),
     categories: authors?.stories,
     perPage,
     total,
