@@ -7,7 +7,6 @@ import type { loader } from "~/routes/$";
 export const LastPosts = ({ blok }: LastPostsStoryblok) => {
   const { headline, grid } = blok;
   const { lastPosts } = useLoaderData<typeof loader>();
-  console.log({ lastPosts });
 
   return (
     <div {...storyblokEditable(blok)} className="center-container">

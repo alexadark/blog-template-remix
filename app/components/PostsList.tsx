@@ -7,19 +7,20 @@ import { getPostCardData } from "~/utils";
 
 interface PostsListType {
   grid?: boolean;
-  filterQuery?: Object;
+  uuid?: string;
 }
 
 interface RouteData {
   total: number;
   posts: PostStoryblok[];
 }
-export const PostsList = ({ grid, filterQuery = {} }: PostsListType) => {
+export const PostsList = ({ grid, uuid }: PostsListType) => {
   const [currentPage, setCurrentPage] = useState(1);
   const matches = useMatches();
   const globalData = matches[0].data;
   const { total, posts: firstsPosts } = matches[1].data as RouteData;
   const [posts, setPosts] = useState(firstsPosts);
+  console.log("total", total, "matches", matches);
 
   interface GlobalData {
     perPage: number;
@@ -35,7 +36,7 @@ export const PostsList = ({ grid, filterQuery = {} }: PostsListType) => {
 
   const perPage = (globalData as GlobalData)?.perPage;
 
-  const fetchPosts = async (page: number, filterQuery: Object) => {
+  const fetchPosts = async (page: number, uuid: string) => {
     const { data: blog } = await sbApi.get(`cdn/stories`, {
       version: "draft",
       starts_with: "blog/",
@@ -43,7 +44,7 @@ export const PostsList = ({ grid, filterQuery = {} }: PostsListType) => {
       page,
       is_startpage: false,
       resolve_relations: resolveRelations,
-      filter_query: filterQuery,
+      search_term: uuid,
     });
 
     const nextPosts = blog.stories.map((p: PostStoryblok) =>
@@ -56,7 +57,7 @@ export const PostsList = ({ grid, filterQuery = {} }: PostsListType) => {
   const loadMore = () => {
     let nextPage = currentPage + 1;
     setCurrentPage(nextPage);
-    fetchPosts(nextPage, filterQuery);
+    fetchPosts(nextPage, uuid || "");
   };
   return (
     <div>

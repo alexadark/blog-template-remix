@@ -6,18 +6,13 @@ import type { loader } from "~/routes/authors.$";
 import type { AuthorStoryblok } from "~/types";
 
 export const Author = ({ blok }: AuthorStoryblok) => {
-  const { story } = useLoaderData<typeof loader>();
-  const filterQuery = {
-    authors: {
-      in_array: story.uuid,
-    },
-  };
+  const { uuid, name } = useLoaderData<typeof loader>();
 
   return (
     <div {...storyblokEditable(blok)} key={blok._uid}>
-      <h1>Posts from: {story.name}</h1>
-      {story.content?.bio && <p>{render(story.content?.bio)}</p>}
-      <PostsList grid={blok.grid} filterQuery={filterQuery} />
+      <h1>Posts from: {name}</h1>
+      {blok.bio && <p>{render(blok.bio)}</p>}
+      <PostsList grid={blok.grid} uuid={uuid} />
     </div>
   );
 };

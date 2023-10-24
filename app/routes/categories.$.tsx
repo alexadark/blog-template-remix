@@ -21,7 +21,6 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
   });
 
   const story = data?.story;
-  console.log("story", story);
 
   const seo = story?.content?.seo_plugin?.title
     ? story?.content?.seo_plugin
@@ -45,15 +44,11 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
     per_page: perPage,
     page,
     resolve_relations: resolveRelations,
-    filter_query: {
-      categories: {
-        in_array: data.story.uuid,
-      },
-    },
+    search_term: data.story.uuid,
   });
 
   let response = await fetch(
-    `https://api.storyblok.com/v2/cdn/stories?token=${process.env.STORYBLOK_PREVIEW_TOKEN}&starts_with=blog/&version=draft&is_startpage=false&filter_query[categories][in_array]=${data.story.uuid}`
+    `https://api.storyblok.com/v2/cdn/stories?token=${process.env.STORYBLOK_PREVIEW_TOKEN}&starts_with=blog/&version=draft&is_startpage=false&search_term=${data.story.uuid}`
   );
   let total = response?.headers.get("total");
 

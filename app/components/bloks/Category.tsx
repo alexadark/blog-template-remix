@@ -6,11 +6,6 @@ import type { loader } from "~/routes/categories.$";
 
 export const Category = ({ blok }: CategoryStoryblok) => {
   const { uuid } = useLoaderData<typeof loader>();
-  const filterQuery = {
-    categories: {
-      in_array: uuid,
-    },
-  };
 
   return (
     <div {...storyblokEditable(blok)} key={blok._uid}>
@@ -19,7 +14,7 @@ export const Category = ({ blok }: CategoryStoryblok) => {
         {blok.description ? <p>{blok.description}</p> : null}
       </div>
 
-      <PostsList grid={blok.grid} filterQuery={filterQuery} />
+      <PostsList grid={blok.grid} uuid={uuid} />
     </div>
   );
 };
