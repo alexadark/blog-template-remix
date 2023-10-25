@@ -20,7 +20,6 @@ export const PostsList = ({ grid, uuid }: PostsListType) => {
   const globalData = matches[0].data;
   const { total, posts: firstsPosts } = matches[1].data as RouteData;
   const [posts, setPosts] = useState(firstsPosts);
-  console.log("total", total, "matches", matches);
 
   interface GlobalData {
     perPage: number;
@@ -63,7 +62,7 @@ export const PostsList = ({ grid, uuid }: PostsListType) => {
     <div>
       <div className={grid ? "grid grid-cols-2 gap-5" : ""}>
         {posts?.map((p: PostStoryblok) => {
-          return <PostCard post={p} key={p?.d} grid={grid} />;
+          return <PostCard post={p} key={p?.id} grid={grid} />;
         })}
       </div>
       {total && posts.length < total && (

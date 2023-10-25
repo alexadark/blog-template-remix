@@ -22,19 +22,19 @@ export const PostCard = ({ post, grid }: PostCardType) => {
         !grid && "mb-7"
       } bg-dark-50 border border-dark-25  px-5 py-7 rounded-lg shadow-sm translate duration-500 hover:-translate-y-1 hover:shadow-primary relative`}
     >
-      <Link to={`/${full_slug}`}>
-        <div
-          className={` ${
-            grid ? "space-y-3" : "flex flex-wrap"
-          } justify-between items-center gap-3 mb-4`}
-        >
-          <div className="mr-5 text-lg font-bold text-primary">
-            {format(new Date(date), "MMMM dd, yyyy")}
-          </div>
-          <div className="">
-            <Categories categories={categories} />
-          </div>
+      <div
+        className={` ${
+          grid ? "space-y-3" : "flex flex-wrap"
+        } justify-between items-center gap-3 mb-4`}
+      >
+        <div className="mr-5 text-lg font-bold text-primary">
+          {format(new Date(date), "MMMM dd, yyyy")}
         </div>
+        <div className="">
+          <Categories categories={categories} />
+        </div>
+      </div>
+      <Link to={`/${full_slug}`}>
         <div className={`${!grid && "md:flex justify-between gap-5"}`}>
           {image && (
             <div className="flex items-center">
