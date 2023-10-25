@@ -83,15 +83,6 @@ export interface CodeBlockStoryblok {
   [k: string]: any;
 }
 
-export interface CommentStoryblok {
-  text?: string;
-  name?: string;
-  mail?: string;
-  _uid: string;
-  component: "comment";
-  [k: string]: any;
-}
-
 export interface ConfigStoryblok {
   header_nav?: NavItemStoryblok[];
   social_items?: SocialItemStoryblok[];
@@ -213,7 +204,6 @@ export interface PostStoryblok {
   author?: StoryblokStory<AuthorStoryblok> | string;
   categories?: (StoryblokStory<CategoryStoryblok> | string)[];
   tags?: (StoryblokStory<TagStoryblok> | string)[];
-  comments?: (StoryblokStory<CommentStoryblok> | string)[];
   seo?: SeoStoryblok[];
   seo_plugin?: {
     _uid?: string;
@@ -228,7 +218,6 @@ export interface PostStoryblok {
     twitter_description?: string;
     [k: string]: any;
   };
-  related_posts?: (StoryblokStory<PostStoryblok> | string)[];
   _uid: string;
   component: "post";
   [k: string]: any;

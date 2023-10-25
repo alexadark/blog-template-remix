@@ -201,35 +201,6 @@
       "component_group_name": "post-content"
     },
     {
-      "name": "comment",
-      "display_name": null,
-      "created_at": "2023-10-17T08:15:16.767Z",
-      "updated_at": "2023-10-17T08:15:16.767Z",
-      "id": 4737055,
-      "schema": {
-        "text": {
-          "type": "textarea"
-        },
-        "name": {
-          "type": "text"
-        },
-        "mail": {
-          "type": "text"
-        }
-      },
-      "image": null,
-      "preview_field": null,
-      "is_root": true,
-      "preview_tmpl": null,
-      "is_nestable": false,
-      "all_presets": [],
-      "preset_id": null,
-      "real_name": "comment",
-      "component_group_uuid": null,
-      "color": null,
-      "icon": null
-    },
-    {
       "name": "config",
       "display_name": null,
       "created_at": "2023-10-17T08:15:16.569Z",
@@ -471,7 +442,7 @@
       "name": "post",
       "display_name": "Post",
       "created_at": "2023-10-17T08:15:16.647Z",
-      "updated_at": "2023-10-17T08:15:16.647Z",
+      "updated_at": "2023-10-25T08:47:59.592Z",
       "id": 4737047,
       "schema": {
         "headline": {
@@ -526,15 +497,6 @@
           ],
           "pos": 7
         },
-        "comments": {
-          "type": "options",
-          "source": "internal_stories",
-          "filter_content_type": [
-            "comment"
-          ],
-          "folder_slug": "comments/",
-          "pos": 8
-        },
         "tab-1c2b7139-9854-4fff-b982-8b033e422751": {
           "display_name": "seo",
           "keys": [
@@ -560,14 +522,6 @@
           "field_type": "seo-metatags",
           "options": [],
           "pos": 11
-        },
-        "related_posts": {
-          "type": "options",
-          "source": "internal_stories",
-          "folder_slug": "blog/",
-          "filter_content_type": [
-            "post"
-          ]
         }
       },
       "image": null,
