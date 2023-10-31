@@ -28,6 +28,7 @@ import {
   LastPosts,
   Author,
 } from "./components/bloks";
+import { getSeo } from "~/utils";
 
 const isServer = typeof window === "undefined";
 
@@ -42,6 +43,13 @@ export const loader = async (args: LoaderFunctionArgs) => {
     version: "draft",
     resolve_links: "url",
   });
+  const { data } = await sbApi.get(`cdn/stories/home`, {
+    version: "draft",
+  });
+  const story = data?.story;
+  const seo = story?.content?.seo_plugin?.title
+    ? story?.content?.seo_plugin
+    : story?.content?.seo[0];
   return json({
     env: {
       STORYBLOK_PREVIEW_TOKEN: process.env.STORYBLOK_PREVIEW_TOKEN,
@@ -50,21 +58,12 @@ export const loader = async (args: LoaderFunctionArgs) => {
     socialItems: config?.story?.content?.social_items,
     footerText: config?.story?.content?.footer_text,
     perPage: config?.story?.content?.posts_per_page,
+    seo,
   });
 };
 
-export const meta: MetaFunction = () => {
-  return [
-    { title: "My Super New Blog | Remix" },
-    {
-      property: "og:title",
-      content: "Very cool blog",
-    },
-    {
-      name: "description",
-      content: "This blog is the best",
-    },
-  ];
+export const meta: MetaFunction = ({ data }: { data: any }) => {
+  return getSeo(data.seo, data.story?.name);
 };
 
 const components = {
