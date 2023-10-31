@@ -9,7 +9,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
 
   const sbApi = getStoryblokApi();
 
-  const resolveRelations = ["post.categories", "post.tags", "post.author"];
+  const resolveRelations = ["post.categories"];
 
   const { data }: { data: any } = await sbApi.get(`cdn/stories/${slug}`, {
     version: "draft",
@@ -22,14 +22,6 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
   const numberOfPosts = data.story.content.body?.find(
     (item: { component: string }) => item.component === "last-posts"
   )?.number_of_posts;
-
-  const { data: blog } = await sbApi.get(`cdn/stories`, {
-    version: "draft",
-    starts_with: "blog/",
-    per_page: numberOfPosts,
-    is_startpage: false,
-    resolve_relations: resolveRelations,
-  });
 
   const { data: lastPosts } = await sbApi.get(`cdn/stories`, {
     version: "draft",
@@ -46,14 +38,13 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
 
   return json({
     story,
-    posts: blog.stories,
     lastPosts: lastPosts.stories,
     seo,
   });
 };
 
 export const meta: MetaFunction = ({ data }: { data: any }) => {
-  return getSeo(data.seo, data.story.name);
+  return getSeo(data.seo, data.story?.name);
 };
 
 const RootPage = () => {
