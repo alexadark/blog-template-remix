@@ -1,6 +1,6 @@
 import type { SeoStoryblok } from "~/types";
 
-export function getSeo(seo: SeoStoryblok, name: string) {
+export function implementSeo(seo: SeoStoryblok, name: string) {
   const {
     title,
     og_image,

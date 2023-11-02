@@ -28,7 +28,7 @@ import {
   LastPosts,
   Author,
 } from "./components/bloks";
-import { getSeo } from "~/utils";
+import { implementSeo } from "~/utils";
 
 const isServer = typeof window === "undefined";
 
@@ -63,7 +63,7 @@ export const loader = async (args: LoaderFunctionArgs) => {
 };
 
 export const meta: MetaFunction = ({ data }: { data: any }) => {
-  return getSeo(data.seo, data.story?.name);
+  return implementSeo(data.seo, data.story?.name);
 };
 
 const components = {

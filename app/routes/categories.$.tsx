@@ -2,7 +2,7 @@ import { json } from "@remix-run/node";
 import { useStoryblokData } from "~/hooks";
 import { getStoryblokApi } from "@storyblok/react";
 import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
-import { getSeo, getPostCardData, getTotal } from "~/utils";
+import { implementSeo, getPostCardData, getTotal } from "~/utils";
 import type { PostStoryblok } from "~/types";
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
@@ -50,8 +50,9 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
   const total = await getTotal(data);
 
   return json({
-    story,
+    blok: story.content,
     uuid: story.uuid,
+    name: story.name,
     posts: postsByCategory?.stories.map((p: PostStoryblok) =>
       getPostCardData(p)
     ),
@@ -63,7 +64,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
 };
 
 export const meta: MetaFunction = ({ data }: { data: any }) => {
-  return getSeo(data.seo, data.story?.name);
+  return implementSeo(data.seo, data.name);
 };
 
 const CategoryPage = () => useStoryblokData();

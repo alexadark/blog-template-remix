@@ -1,7 +1,7 @@
 import { json } from "@remix-run/node";
 import { useStoryblokData } from "~/hooks";
 import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
-import { getSeo, getPostCardData, getTotal } from "~/utils";
+import { implementSeo, getPostCardData, getTotal } from "~/utils";
 import type { PostStoryblok } from "~/types";
 import { getStoryblokApi } from "@storyblok/react";
 
@@ -43,7 +43,8 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
     : story?.content?.seo[0];
 
   return json({
-    story,
+    blok: story.content,
+    name: story.name,
     uuid: story.uuid,
     posts: postsByTag?.stories.map((p: PostStoryblok) => getPostCardData(p)),
     perPage,
@@ -53,7 +54,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
 };
 
 export const meta: MetaFunction = ({ data }: { data: any }) => {
-  return getSeo(data.seo, data.story.name);
+  return implementSeo(data.seo, data.name);
 };
 
 const TagPage = () => useStoryblokData();

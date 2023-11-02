@@ -6,9 +6,10 @@ import type { loader } from "~/routes/$";
 export const useStoryblokData = () => {
   const matches = useMatches();
   const data = matches[1].data as unknown as { story: StoryblokStory<unknown> };
+  console.log(data);
 
   // const data = useLoaderData<typeof loader>();
-  const story = useStoryblokState(data.story, {
+  const blok = useStoryblokState(data.blok, {
     resolveRelations: [
       "post.categories",
       "post.tags",
@@ -17,5 +18,5 @@ export const useStoryblokData = () => {
     ],
   });
 
-  return <StoryblokComponent blok={story?.content} />;
+  return <StoryblokComponent blok={blok} />;
 };
