@@ -2,7 +2,7 @@ import { json } from "@remix-run/node";
 import { useStoryblokData } from "~/hooks";
 import { getStoryblokApi } from "@storyblok/react";
 import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
-import { getSeo, getPostCardData } from "~/utils";
+import { getSeo, getPostCardData, getTotal } from "~/utils";
 import type { PostStoryblok } from "~/types";
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
@@ -47,10 +47,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
     search_term: data.story.uuid,
   });
 
-  let response = await fetch(
-    `https://api.storyblok.com/v2/cdn/stories?token=${process.env.STORYBLOK_PREVIEW_TOKEN}&starts_with=blog/&version=draft&is_startpage=false&search_term=${data.story.uuid}`
-  );
-  let total = response?.headers.get("total");
+  const total = await getTotal(data);
 
   return json({
     story,
