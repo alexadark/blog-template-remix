@@ -2,7 +2,8 @@ import { json } from "@remix-run/node";
 import { getStoryblokApi } from "@storyblok/react";
 import { useStoryblokData } from "~/hooks";
 import type { MetaFunction, LoaderFunctionArgs } from "@remix-run/node";
-import { getSeo } from "~/utils";
+import { getSeo, getPostCardData } from "~/utils";
+import type { PostStoryblok } from "~/types";
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   let slug = params["*"] ?? "home";
@@ -38,7 +39,9 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
 
   return json({
     story,
-    lastPosts: lastPosts.stories,
+    lastPosts: lastPosts?.stories?.map((p: PostStoryblok) =>
+      getPostCardData(p)
+    ),
     seo,
   });
 };
