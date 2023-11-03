@@ -90,7 +90,7 @@
       "name": "category",
       "display_name": null,
       "created_at": "2023-10-17T08:15:16.676Z",
-      "updated_at": "2023-10-18T11:14:24.579Z",
+      "updated_at": "2023-10-31T15:41:48.565Z",
       "id": 4737049,
       "schema": {
         "seo": {
@@ -104,12 +104,6 @@
           "minimum": 1,
           "maximum": 1
         },
-        "seo_plugin": {
-          "type": "custom",
-          "field_type": "seo-metatags",
-          "options": [],
-          "pos": 1
-        },
         "headline": {
           "type": "text",
           "pos": 2,
@@ -118,7 +112,6 @@
         "tab-b6c77404-36ca-4542-b1f8-a8f0ff13b877": {
           "display_name": "Seo",
           "keys": [
-            "seo_plugin",
             "seo"
           ],
           "pos": 3,
@@ -204,13 +197,15 @@
       "name": "config",
       "display_name": null,
       "created_at": "2023-10-17T08:15:16.569Z",
-      "updated_at": "2023-10-17T08:15:16.569Z",
+      "updated_at": "2023-11-03T10:23:19.839Z",
       "id": 4737042,
       "schema": {
         "tab-acc2463a-e449-426d-a69d-2f61306438a7": {
           "display_name": "Header",
           "keys": [
-            "header_nav"
+            "header_nav",
+            "logo",
+            "title"
           ],
           "pos": 0,
           "type": "tab",
@@ -271,6 +266,15 @@
         },
         "posts_per_page": {
           "type": "number"
+        },
+        "logo": {
+          "type": "asset",
+          "filetypes": [
+            "images"
+          ]
+        },
+        "title": {
+          "type": "text"
         }
       },
       "image": null,
@@ -395,7 +399,7 @@
       "name": "page",
       "display_name": null,
       "created_at": "2023-10-17T08:15:16.708Z",
-      "updated_at": "2023-10-17T08:15:16.708Z",
+      "updated_at": "2023-10-31T15:41:22.159Z",
       "id": 4737051,
       "schema": {
         "body": {
@@ -404,8 +408,7 @@
         "tab-e94f9421-6b8a-4d69-89f6-f37dd027d9df": {
           "display_name": "SEO",
           "keys": [
-            "seo",
-            "seo_plugin"
+            "seo"
           ],
           "pos": 0,
           "type": "tab"
@@ -419,11 +422,6 @@
           ],
           "minimum": 1,
           "maximum": 1
-        },
-        "seo_plugin": {
-          "type": "custom",
-          "field_type": "seo-metatags",
-          "options": []
         }
       },
       "image": null,
@@ -442,7 +440,7 @@
       "name": "post",
       "display_name": "Post",
       "created_at": "2023-10-17T08:15:16.647Z",
-      "updated_at": "2023-10-25T08:47:59.592Z",
+      "updated_at": "2023-10-31T15:41:30.463Z",
       "id": 4737047,
       "schema": {
         "headline": {
@@ -500,8 +498,7 @@
         "tab-1c2b7139-9854-4fff-b982-8b033e422751": {
           "display_name": "seo",
           "keys": [
-            "seo",
-            "seo_plugin"
+            "seo"
           ],
           "pos": 9,
           "type": "tab"
@@ -516,12 +513,6 @@
           "minimum": 1,
           "maximum": 1,
           "pos": 10
-        },
-        "seo_plugin": {
-          "type": "custom",
-          "field_type": "seo-metatags",
-          "options": [],
-          "pos": 11
         }
       },
       "image": null,
@@ -628,7 +619,7 @@
       "name": "tag",
       "display_name": null,
       "created_at": "2023-10-17T08:15:16.600Z",
-      "updated_at": "2023-10-18T11:13:57.875Z",
+      "updated_at": "2023-10-31T15:41:38.729Z",
       "id": 4737044,
       "schema": {
         "seo": {
@@ -641,12 +632,6 @@
           "pos": 0,
           "minimum": 1,
           "maximum": 1
-        },
-        "seo_plugin": {
-          "type": "custom",
-          "field_type": "seo-metatags",
-          "options": [],
-          "pos": 1
         },
         "headline": {
           "type": "text",
@@ -661,7 +646,6 @@
         "tab-42670311-31db-4dc4-bcd2-8e112ad403ca": {
           "display_name": "Seo",
           "keys": [
-            "seo_plugin",
             "seo"
           ],
           "pos": 4,

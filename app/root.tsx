@@ -58,6 +58,9 @@ export const loader = async (args: LoaderFunctionArgs) => {
     socialItems: config?.story?.content?.social_items,
     footerText: config?.story?.content?.footer_text,
     perPage: config?.story?.content?.posts_per_page,
+    logo: config?.story?.content?.logo,
+    blogTitle: config?.story?.content?.title,
+    logoTitle: config?.story?.content?.logo_title,
     seo,
   });
 };

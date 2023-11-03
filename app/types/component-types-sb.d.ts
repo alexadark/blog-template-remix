@@ -55,19 +55,6 @@ export interface AuthorStoryblok {
 
 export interface CategoryStoryblok {
   seo?: SeoStoryblok[];
-  seo_plugin?: {
-    _uid?: string;
-    title?: string;
-    plugin?: string;
-    og_image?: string;
-    og_title?: string;
-    description?: string;
-    twitter_image?: string;
-    twitter_title?: string;
-    og_description?: string;
-    twitter_description?: string;
-    [k: string]: any;
-  };
   headline?: string;
   image?: AssetStoryblok;
   description?: string;
@@ -88,6 +75,8 @@ export interface ConfigStoryblok {
   social_items?: SocialItemStoryblok[];
   footer_text?: RichtextStoryblok;
   posts_per_page?: string;
+  logo?: AssetStoryblok;
+  title?: string;
   _uid: string;
   component: "config";
   [k: string]: any;
@@ -177,19 +166,6 @@ export interface NavItemStoryblok {
 export interface PageStoryblok {
   body?: any[];
   seo?: SeoStoryblok[];
-  seo_plugin?: {
-    _uid?: string;
-    title?: string;
-    plugin?: string;
-    og_image?: string;
-    og_title?: string;
-    description?: string;
-    twitter_image?: string;
-    twitter_title?: string;
-    og_description?: string;
-    twitter_description?: string;
-    [k: string]: any;
-  };
   _uid: string;
   component: "page";
   uuid?: string;
@@ -205,19 +181,6 @@ export interface PostStoryblok {
   categories?: (StoryblokStory<CategoryStoryblok> | string)[];
   tags?: (StoryblokStory<TagStoryblok> | string)[];
   seo?: SeoStoryblok[];
-  seo_plugin?: {
-    _uid?: string;
-    title?: string;
-    plugin?: string;
-    og_image?: string;
-    og_title?: string;
-    description?: string;
-    twitter_image?: string;
-    twitter_title?: string;
-    og_description?: string;
-    twitter_description?: string;
-    [k: string]: any;
-  };
   _uid: string;
   component: "post";
   [k: string]: any;
@@ -247,19 +210,6 @@ export interface SocialItemStoryblok {
 
 export interface TagStoryblok {
   seo?: SeoStoryblok[];
-  seo_plugin?: {
-    _uid?: string;
-    title?: string;
-    plugin?: string;
-    og_image?: string;
-    og_title?: string;
-    description?: string;
-    twitter_image?: string;
-    twitter_title?: string;
-    og_description?: string;
-    twitter_description?: string;
-    [k: string]: any;
-  };
   headline?: string;
   description?: string;
   grid?: boolean;
