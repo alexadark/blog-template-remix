@@ -14,12 +14,6 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
     version: "draft",
   });
 
-  const { data: authors } = await sbApi.get(`cdn/stories`, {
-    version: "draft",
-    starts_with: "authors/",
-    is_startpage: false,
-  });
-
   const story = data?.story;
 
   const seo = story?.content?.seo_plugin?.title
@@ -49,7 +43,6 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
     name: story.name,
     uuid: story.uuid,
     posts: postsByAuthor?.stories.map((p: PostStoryblok) => getPostCardData(p)),
-    categories: authors?.stories,
     perPage,
     total,
     seo,

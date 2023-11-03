@@ -14,12 +14,6 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
     version: "draft",
   });
 
-  const { data: categories } = await sbApi.get(`cdn/stories`, {
-    version: "draft",
-    starts_with: "categories/",
-    is_startpage: false,
-  });
-
   const story = data?.story;
 
   const seo = story?.content?.seo_plugin?.title
@@ -51,7 +45,6 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
     posts: postsByCategory?.stories.map((p: PostStoryblok) =>
       getPostCardData(p)
     ),
-    categories: categories?.stories,
     perPage,
     total,
     seo,
