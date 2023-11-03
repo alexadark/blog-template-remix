@@ -5,7 +5,6 @@ import type { loader } from "~/root";
 
 export const Header = () => {
   const { logo, blogTitle } = useLoaderData<typeof loader>();
-  console.log(logo, blogTitle);
 
   const title = (
     <h1 className="my-0 text-3xl font-bold font-heading">{blogTitle}</h1>
