@@ -2,7 +2,7 @@ import { json } from "@remix-run/node";
 import { useStoryblokData } from "~/hooks";
 import { getStoryblokApi } from "@storyblok/react";
 import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
-import { implementSeo, getPostCardData } from "~/utils";
+import { implementSeo, getPostCardData, getPerPage } from "~/utils";
 import type { PostStoryblok } from "~/types";
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
@@ -23,12 +23,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
     ? 1
     : Number(params.pageNumber);
 
-  const { data: config } = await sbApi.get(`cdn/stories/config`, {
-    version: "draft",
-    resolve_links: "url",
-  });
-
-  let perPage = config?.story?.content?.posts_per_page;
+  let perPage = await getPerPage(sbApi);
 
   const { data: blog } = await sbApi.get(`cdn/stories`, {
     version: "draft",
