@@ -60,7 +60,7 @@ export const PostsList = ({ grid, uuid }: PostsListType) => {
   };
   return (
     <div>
-      <div className={grid ? "grid grid-cols-2 gap-5" : ""}>
+      <div className={grid ? "grid sm:grid-cols-2 gap-5" : ""}>
         {posts?.map((p: PostStoryblok) => {
           return <PostCard post={p} key={p?.id} grid={grid} />;
         })}
