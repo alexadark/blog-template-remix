@@ -11,7 +11,7 @@ export const LastPosts = ({ blok }: LastPostsStoryblok) => {
   return (
     <div {...storyblokEditable(blok)} className="center-container">
       <h2>{headline}</h2>
-      <div className={grid && "grid grid-cols-2 gap-5"}>
+      <div className={grid && "grid sm:grid-cols-2 gap-5"}>
         {lastPosts.map((post: PostStoryblok) => {
           return <PostCard post={post} key={post.id} grid={grid} />;
         })}
