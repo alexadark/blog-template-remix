@@ -16,10 +16,6 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
     version: "draft",
   });
 
-  if (!data || !data.story) {
-    return json({ notFound: true }, { status: 404 });
-  }
-
   const numberOfPosts = data.story.content.body?.find(
     (item: { component: string }) => item.component === "last-posts"
   )?.number_of_posts;
@@ -53,15 +49,6 @@ export const meta: MetaFunction = ({ data }: { data: any }) => {
 
 const RootPage = () => {
   const data = useStoryblokData();
-
-  if (data.message === "Not Found") {
-    return (
-      <div>
-        <h1>Page Not Found</h1>
-        <p>The page you're looking for doesn't exist.</p>
-      </div>
-    );
-  }
 
   return data;
 };
