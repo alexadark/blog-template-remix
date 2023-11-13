@@ -88,7 +88,14 @@ storyblokInit({
   components,
 });
 
-export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
+export const links: LinksFunction = () => [
+  {
+    rel: "preload",
+    href: "https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&family=Inter:wght@400..700&display=swap",
+    as: "style",
+  },
+  { rel: "stylesheet", href: styles },
+];
 
 export default function App() {
   const { env } = useLoaderData<typeof loader>();
