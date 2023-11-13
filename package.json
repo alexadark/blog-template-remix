@@ -3,6 +3,7 @@
   "private": true,
   "sideEffects": false,
   "type": "module",
+  "platform": "node",
   "scripts": {
     "build": "remix build",
     "dev": "remix dev --manual",

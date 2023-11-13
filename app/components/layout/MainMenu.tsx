@@ -8,7 +8,7 @@ export const MainMenu = () => {
 
   return (
     <nav className="flex flex-col space-y-3" {...storyblokEditable(nav)}>
-      <NavLink to="/" className="menu-item">
+      <NavLink prefetch="intent" to="/" className="menu-item">
         Home
       </NavLink>
       {nav.map((nestedBlok: NavItemStoryblok) => (

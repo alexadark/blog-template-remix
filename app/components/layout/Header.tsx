@@ -2,6 +2,7 @@ import { Link, useLoaderData } from "@remix-run/react";
 import { SlideSidebar } from "./SlideSidebar";
 import { Search } from "~/components/search";
 import type { loader } from "~/root";
+import Headroom from "react-headroom";
 
 export const Header = () => {
   const { logo, blogTitle } = useLoaderData<typeof loader>();
@@ -19,6 +20,7 @@ export const Header = () => {
   );
 
   return (
+    // <Headroom>
     <header className=" top-0 z-40 flex-none w-full py-3 border-b backdrop-blur border-dark-25  bg-dark-100 lg:bg-transparent">
       <div className="max-w-site flex justify-between mx-auto align-center px-5">
         <Link to="/">{branding}</Link>
@@ -28,5 +30,6 @@ export const Header = () => {
         </div>
       </div>
     </header>
+    // </Headroom>
   );
 };

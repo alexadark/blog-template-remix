@@ -6,5 +6,5 @@ export default {
   // publicPath: "/build/",
   // serverBuildPath: "build/index.js",
   // serverModuleFormat: "cjs",
-  // serverDependenciesToBundle: ["react-syntax-highlighter"],
+  serverDependenciesToBundle: ["react-syntax-highlighter"],
 };

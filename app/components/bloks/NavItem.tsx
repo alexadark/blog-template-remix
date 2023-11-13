@@ -10,6 +10,7 @@ export const NavItem = ({ blok }: NavItemStoryblok) => {
       {link.linktype === "story" ? (
         <NavLink
           key={_uid}
+          prefetch="intent"
           to={`/${link.cached_url}`}
           {...storyblokEditable(blok)}
           className="menu-item"
