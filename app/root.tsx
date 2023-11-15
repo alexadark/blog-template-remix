@@ -29,6 +29,7 @@ import {
   Author,
 } from "./components/bloks";
 import { implementSeo } from "~/utils";
+import { GeneralErrorBoundary } from "./components/GeneralErrorBoundary";
 
 const isServer = typeof window === "undefined";
 
@@ -97,8 +98,7 @@ export const links: LinksFunction = () => [
   { rel: "stylesheet", href: styles },
 ];
 
-export default function App() {
-  const { env } = useLoaderData<typeof loader>();
+const Document = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en">
       <head>
@@ -108,18 +108,37 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <Layout>
-          <Outlet />
-        </Layout>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `window.env = ${JSON.stringify(env)}`,
-          }}
-        />
+        {children}
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
       </body>
     </html>
+  );
+};
+
+export default function App() {
+  const { env } = useLoaderData<typeof loader>();
+  return (
+    <Document>
+      <Layout>
+        <Outlet />
+      </Layout>
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `window.env = ${JSON.stringify(env)}`,
+        }}
+      />
+    </Document>
+  );
+}
+
+export function ErrorBoundary() {
+  return (
+    <Document>
+      <div className="flex-1">
+        <GeneralErrorBoundary />
+      </div>
+    </Document>
   );
 }
