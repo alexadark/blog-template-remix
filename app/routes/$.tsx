@@ -4,6 +4,7 @@ import { useStoryblokData } from "~/hooks";
 import type { MetaFunction, LoaderFunctionArgs } from "@remix-run/node";
 import { implementSeo, getPostCardData } from "~/utils";
 import type { PostStoryblok } from "~/types";
+import { useParams } from "@remix-run/react";
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   let slug = params["*"] ?? "home";
@@ -48,7 +49,9 @@ export const meta: MetaFunction = ({ data }: { data: any }) => {
 };
 
 const RootPage = () => {
-  const data = useStoryblokData("routes/_index");
+  const params = useParams();
+  const routeFile = params["*"] === undefined ? "routes/_index" : "routes/$";
+  const data = useStoryblokData(routeFile);
 
   return data;
 };
