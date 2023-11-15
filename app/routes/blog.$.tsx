@@ -62,6 +62,6 @@ export const meta: MetaFunction = ({ data }: { data: any }) => {
   return implementSeo(data.seo, data.name);
 };
 
-const PostPage = () => useStoryblokData();
+const PostPage = () => useStoryblokData("routes/blog.$");
 
 export default PostPage;

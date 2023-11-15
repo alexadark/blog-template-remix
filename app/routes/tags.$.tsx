@@ -52,6 +52,6 @@ export const meta: MetaFunction = ({ data }: { data: any }) => {
   return implementSeo(data.seo, data.name);
 };
 
-const TagPage = () => useStoryblokData();
+const TagPage = () => useStoryblokData("routes/tags.$");
 
 export default TagPage;

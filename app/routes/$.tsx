@@ -48,7 +48,7 @@ export const meta: MetaFunction = ({ data }: { data: any }) => {
 };
 
 const RootPage = () => {
-  const data = useStoryblokData();
+  const data = useStoryblokData("routes/_index");
 
   return data;
 };

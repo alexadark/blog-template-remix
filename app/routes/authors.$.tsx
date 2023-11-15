@@ -53,6 +53,6 @@ export const meta: MetaFunction = ({ data }: { data: any }) => {
   return implementSeo(data.seo, data.name);
 };
 
-const AuthorPage = () => useStoryblokData();
+const AuthorPage = () => useStoryblokData("routes/authors.$");
 
 export default AuthorPage;
