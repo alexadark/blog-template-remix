@@ -57,6 +57,7 @@ const SearchResults = () => {
           <h4 key={page.id}>
             <Link
               to={`/${page.full_slug}`}
+              prefetch="intent"
               className="text-links hover:text-secondary transition-colors duration-300 text-xl"
             >
               {page.name}

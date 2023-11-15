@@ -17,7 +17,7 @@ export const LastPosts = ({ blok }: LastPostsStoryblok) => {
         })}
       </div>
       <div className="flex justify-center mt-10">
-        <Link to={`/blog`} className="button py-4 px-7">
+        <Link prefetch="intent" to={`/blog`} className="button py-4 px-7">
           View all posts
         </Link>
       </div>

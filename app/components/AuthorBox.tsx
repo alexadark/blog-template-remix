@@ -10,7 +10,7 @@ export const AuthorBox = ({ author }: AuthorStoryblok) => {
   } = author;
   return (
     <div className="flex flex-col justify-between items-center p-7 border border-dark-25 bg-dark-50 w-[248px] space-y-3 my-10 rounded-md">
-      <Link to={`/${full_slug}`}>
+      <Link prefetch="intent" to={`/${full_slug}`}>
         <div className="flex justify-center mb-3">
           <img
             src={avatar.filename}

@@ -11,7 +11,7 @@ export const Categories = ({ categories, ...props }: CategoriesProps) => {
     <div {...props} className="flex items-center space-x-2">
       <FolderIcon className="text-xl text-secondary mr-2" />
       {categories?.map((c: CategoryStoryblok) => (
-        <Link to={`/${c.full_slug}`} key={c.id}>
+        <Link prefetch="intent" to={`/${c.full_slug}`} key={c.id}>
           <span className="button">{c.name}</span>
         </Link>
       ))}

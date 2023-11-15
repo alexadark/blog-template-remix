@@ -34,7 +34,7 @@ export const PostCard = ({ post, grid }: PostCardType) => {
           <Categories categories={categories} />
         </div>
       </div>
-      <Link to={`/${full_slug}`}>
+      <Link prefetch="intent" to={`/${full_slug}`}>
         <div className={`${!grid && "md:flex justify-between gap-5"}`}>
           {image && (
             <div className="flex items-center">
