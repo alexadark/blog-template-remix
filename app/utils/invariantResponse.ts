@@ -1,3 +1,4 @@
+// This code checks if a condition is true and throws an error if it is not
 export function invariantResponse(
   condition: any,
   message?: string | (() => string),

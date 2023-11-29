@@ -2,13 +2,20 @@ import { json } from "@remix-run/node";
 import { getStoryblokApi } from "@storyblok/react";
 import { useStoryblokData } from "~/hooks";
 import type { MetaFunction, LoaderFunctionArgs } from "@remix-run/node";
-import { implementSeo, getPostCardData, invariantResponse } from "~/utils";
+import {
+  implementSeo,
+  getPostCardData,
+  invariantResponse,
+  getAllSlugs,
+  validateSlug,
+} from "~/utils";
 import type { PostStoryblok } from "~/types";
 import { GeneralErrorBoundary } from "~/components/GeneralErrorBoundary";
-import { Link, useLocation } from "@remix-run/react";
+import { NotFoundPage } from "~/components/NotFoundPage";
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   let slug = params["*"] ?? "home";
+  await validateSlug(slug);
 
   const sbApi = getStoryblokApi();
 
@@ -17,7 +24,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
   const { data }: { data: any } = await sbApi.get(`cdn/stories/${slug}`, {
     version: "draft",
   });
-  invariantResponse(data, "page not found", { status: 404 });
+
   const numberOfPosts = data.story.content.body?.find(
     (item: { component: string }) => item.component === "last-posts"
   )?.number_of_posts;
@@ -46,7 +53,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
 };
 
 export const meta: MetaFunction = ({ data }: { data: any }) => {
-  return implementSeo(data.seo, data.name);
+  return implementSeo(data?.seo, data?.name);
 };
 
 const RootPage = () => {
@@ -55,23 +62,10 @@ const RootPage = () => {
   return data;
 };
 export function ErrorBoundary() {
-  const location = useLocation();
   return (
     <GeneralErrorBoundary
       statusHandlers={{
-        404: () => (
-          <div className="flex flex-col gap-6">
-            <div className="flex flex-col gap-3">
-              <h1>We can't find this page:</h1>
-              <pre className="text-body-lg whitespace-pre-wrap break-all">
-                {location.pathname}
-              </pre>
-            </div>
-            <Link to="/" className="text-body-md underline">
-              Back to home
-            </Link>
-          </div>
-        ),
+        404: () => <NotFoundPage />,
       }}
     />
   );

@@ -28,7 +28,7 @@ import {
   LastPosts,
   Author,
 } from "./components/bloks";
-import { implementSeo } from "~/utils";
+import { implementSeo, invariantResponse } from "~/utils";
 import { GeneralErrorBoundary } from "./components/GeneralErrorBoundary";
 
 const isServer = typeof window === "undefined";
@@ -39,6 +39,13 @@ const accessToken = isServer
     window.env.STORYBLOK_PREVIEW_TOKEN;
 
 export const loader = async (args: LoaderFunctionArgs) => {
+  invariantResponse(
+    accessToken,
+    "You need to provide an access token to interact with Storyblok API.",
+    {
+      status: 401,
+    }
+  );
   const sbApi = getStoryblokApi();
   const { data: config } = await sbApi.get(`cdn/stories/config`, {
     version: "draft",
@@ -47,6 +54,7 @@ export const loader = async (args: LoaderFunctionArgs) => {
   const { data } = await sbApi.get(`cdn/stories/home`, {
     version: "draft",
   });
+
   const story = data?.story;
   const seo = story?.content?.seo_plugin?.title
     ? story?.content?.seo_plugin
@@ -67,7 +75,7 @@ export const loader = async (args: LoaderFunctionArgs) => {
 };
 
 export const meta: MetaFunction = ({ data }: { data: any }) => {
-  return implementSeo(data.seo, data.story?.name);
+  return implementSeo(data?.seo, data?.story?.name);
 };
 
 const components = {

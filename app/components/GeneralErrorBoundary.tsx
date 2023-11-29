@@ -26,7 +26,12 @@ export function getErrorMessage(error: unknown) {
   console.error("Unable to get error message for error", error);
   return "Unknown Error";
 }
-
+/**
+ * A status handler is a function that takes an object with the following properties:
+ * - error: An error object from the Remix router. It has a `status` property (the HTTP status code) and a `data` property (the error message or data).
+ * - params: An object that maps route parameter names to their values.
+ * The function should return a JSX element or null.
+ */
 export function GeneralErrorBoundary({
   defaultStatusHandler = ({ error }) => (
     <p>
@@ -48,7 +53,7 @@ export function GeneralErrorBoundary({
   }
 
   return (
-    <div className="container mx-auto flex h-full w-full items-center justify-center bg-destructive p-20 text-h2 text-destructive-foreground">
+    <div className="container mx-auto flex h-full w-full items-center justify-center bg-destructive p-20 text-h2 text-destructive-foreground bg-red-500">
       {isRouteErrorResponse(error)
         ? (statusHandlers?.[error.status] ?? defaultStatusHandler)({
             error,
