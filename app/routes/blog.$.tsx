@@ -6,17 +6,13 @@ import {
   implementSeo,
   getPostCardData,
   getPerPage,
-  validateSlug,
+  invariantResponse,
 } from "~/utils";
 import type { PostStoryblok } from "~/types";
 import { GeneralErrorBoundary } from "~/components/GeneralErrorBoundary";
 import { NotFoundPage } from "~/components/NotFoundPage";
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
-  const validSlug = params["*"] || "blog";
-
-  await validateSlug("blog" ? "blog" : `blog/${validSlug}`);
-
   const sbApi = getStoryblokApi();
   const resolveRelations = [
     "post.categories",
@@ -26,10 +22,19 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
   ];
   let slug = params["*"] ?? "blog";
 
-  const { data } = await sbApi.get(`cdn/stories/blog/${slug}`, {
-    version: "draft",
-    resolve_relations: resolveRelations,
+  const { data } = await sbApi
+    .get(`cdn/stories/blog/${slug}`, {
+      version: "draft",
+      resolve_relations: resolveRelations,
+    })
+    .catch((e) => {
+      console.log("e", e);
+      return { data: null };
+    });
+  invariantResponse(data, `there is no post with slug ${slug}`, {
+    status: 404,
   });
+
   let page = Number.isNaN(Number(params.pageNumber))
     ? 1
     : Number(params.pageNumber);

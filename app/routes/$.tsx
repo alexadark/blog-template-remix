@@ -2,27 +2,28 @@ import { json } from "@remix-run/node";
 import { getStoryblokApi } from "@storyblok/react";
 import { useStoryblokData } from "~/hooks";
 import type { MetaFunction, LoaderFunctionArgs } from "@remix-run/node";
-import {
-  implementSeo,
-  getPostCardData,
-  invariantResponse,
-  getAllSlugs,
-  validateSlug,
-} from "~/utils";
+import { implementSeo, getPostCardData, invariantResponse } from "~/utils";
 import type { PostStoryblok } from "~/types";
 import { GeneralErrorBoundary } from "~/components/GeneralErrorBoundary";
 import { NotFoundPage } from "~/components/NotFoundPage";
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   let slug = params["*"] ?? "home";
-  await validateSlug(slug);
 
   const sbApi = getStoryblokApi();
 
   const resolveRelations = ["post.categories"];
 
-  const { data }: { data: any } = await sbApi.get(`cdn/stories/${slug}`, {
-    version: "draft",
+  const { data }: { data: any } = await sbApi
+    .get(`cdn/stories/${slug}`, {
+      version: "draft",
+    })
+    .catch((e) => {
+      console.log("e", e);
+      return { data: null };
+    });
+  invariantResponse(data, `there is no page with slug ${slug}`, {
+    status: 404,
   });
 
   const numberOfPosts = data.story.content.body?.find(

@@ -7,7 +7,7 @@ import {
   getPostCardData,
   getTotal,
   getPerPage,
-  validateSlug,
+  invariantResponse,
 } from "~/utils";
 import type { PostStoryblok } from "~/types";
 import { GeneralErrorBoundary } from "~/components/GeneralErrorBoundary";
@@ -15,12 +15,20 @@ import { NotFoundPage } from "~/components/NotFoundPage";
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   let slug = params["*"] ?? "home";
-  await validateSlug(`categories/${slug}`);
+
   const sbApi = getStoryblokApi();
   const resolveRelations = ["post.categories", "post.tags", "post.author"];
 
-  const { data } = await sbApi.get(`cdn/stories/categories/${slug}`, {
-    version: "draft",
+  const { data } = await sbApi
+    .get(`cdn/stories/categories/${slug}`, {
+      version: "draft",
+    })
+    .catch((e) => {
+      console.log("e", e);
+      return { data: null };
+    });
+  invariantResponse(data, `there is no page with slug ${slug}`, {
+    status: 404,
   });
 
   const story = data?.story;

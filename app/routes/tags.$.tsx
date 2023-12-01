@@ -6,7 +6,7 @@ import {
   getPostCardData,
   getTotal,
   getPerPage,
-  validateSlug,
+  invariantResponse,
 } from "~/utils";
 import type { PostStoryblok } from "~/types";
 import { getStoryblokApi } from "@storyblok/react";
@@ -15,12 +15,20 @@ import { NotFoundPage } from "~/components/NotFoundPage";
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   let slug = params["*"] ?? "home";
-  await validateSlug(`tags/${slug}`);
+
   const resolveRelations = ["post.categories", "post.tags", "post.author"];
   const sbApi = getStoryblokApi();
 
-  const { data } = await getStoryblokApi().get(`cdn/stories/tags/${slug}`, {
-    version: "draft",
+  const { data } = await getStoryblokApi()
+    .get(`cdn/stories/tags/${slug}`, {
+      version: "draft",
+    })
+    .catch((e) => {
+      console.log("e", e);
+      return { data: null };
+    });
+  invariantResponse(data, `there is no post with slug ${slug}`, {
+    status: 404,
   });
 
   let page = Number.isNaN(Number(params.pageNumber))

@@ -3,4 +3,3 @@ export * from "./getPostCardData";
 export * from "./getTotal";
 export * from "./getPerPage";
 export * from "./invariantResponse";
-export * from "./validateSlug";
