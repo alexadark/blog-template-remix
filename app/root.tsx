@@ -145,7 +145,16 @@ export function ErrorBoundary() {
   return (
     <Document>
       <div className="flex-1">
-        <GeneralErrorBoundary />
+        <GeneralErrorBoundary
+          statusHandlers={{
+            401: (e) => (
+              <div className="container max-w-2xl  h-full bg-primary mx-auto text-2xl text-white font-bold text-center p-10 mt-20 rounded-lg">
+                You need to provide an access token to interact with Storyblok
+                API.
+              </div>
+            ),
+          }}
+        />
       </div>
     </Document>
   );
