@@ -2,11 +2,9 @@ import { json } from "@remix-run/node";
 import { getStoryblokApi } from "@storyblok/react";
 import { useStoryblokData } from "~/hooks";
 import type { MetaFunction, LoaderFunctionArgs } from "@remix-run/node";
-import { implementSeo, getPostCardData, invariantResponse } from "~/utils";
+import { implementSeo, getPostCardData } from "~/utils";
 import type { PostStoryblok } from "~/types";
 import { useParams } from "@remix-run/react";
-import { GeneralErrorBoundary } from "~/components/GeneralErrorBoundary";
-import { NotFoundPage } from "~/components/NotFoundPage";
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   let slug = params["*"] ?? "home";
@@ -15,16 +13,8 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
 
   const resolveRelations = ["post.categories"];
 
-  const { data }: { data: any } = await sbApi
-    .get(`cdn/stories/${slug}`, {
-      version: "draft",
-    })
-    .catch((e) => {
-      console.log("e", e);
-      return { data: null };
-    });
-  invariantResponse(data, `there is no page with slug ${slug}`, {
-    status: 404,
+  const { data }: { data: any } = await sbApi.get(`cdn/stories/${slug}`, {
+    version: "draft",
   });
 
   const numberOfPosts = data.story.content.body?.find(
@@ -55,7 +45,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
 };
 
 export const meta: MetaFunction = ({ data }: { data: any }) => {
-  return implementSeo(data?.seo, data?.name);
+  return implementSeo(data.seo, data.name);
 };
 
 const RootPage = () => {
@@ -65,14 +55,5 @@ const RootPage = () => {
 
   return data;
 };
-export function ErrorBoundary() {
-  return (
-    <GeneralErrorBoundary
-      statusHandlers={{
-        404: () => <NotFoundPage />,
-      }}
-    />
-  );
-}
 
 export default RootPage;

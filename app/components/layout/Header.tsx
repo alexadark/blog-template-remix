@@ -3,10 +3,9 @@ import { SlideSidebar } from "./SlideSidebar";
 import { Search } from "~/components/search";
 import type { loader } from "~/root";
 import Headroom from "react-headroom";
-import { GeneralErrorBoundary } from "../GeneralErrorBoundary";
 
 export const Header = () => {
-  const { logo, blogTitle } = useLoaderData<typeof loader>() || {};
+  const { logo, blogTitle } = useLoaderData<typeof loader>();
 
   const title = (
     <h1 className="my-0 text-3xl font-bold font-heading">{blogTitle}</h1>
@@ -34,10 +33,3 @@ export const Header = () => {
     // </Headroom>
   );
 };
-export function ErrorBoundary() {
-  return (
-    <div className="flex-1">
-      <GeneralErrorBoundary />
-    </div>
-  );
-}
