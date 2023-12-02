@@ -23,7 +23,7 @@ export const Search = () => {
   return (
     <>
       {isSearching && (
-        <div className="absolute inset-0 flex items-center justify-center w-full h-full bg-green-900 overlay opacity-80">
+        <div className="absolute inset-0 flex items-center justify-center w-full h-full bg-dark-100 overlay opacity-80">
           <h3>Searching...</h3>
         </div>
       )}
