@@ -28,7 +28,8 @@ import {
   LastPosts,
   Author,
 } from "./components/bloks";
-import { implementSeo } from "~/utils";
+import { implementSeo, invariantResponse } from "~/utils";
+import { GeneralErrorBoundary } from "./components/GeneralErrorBoundary";
 
 const isServer = typeof window === "undefined";
 
@@ -38,6 +39,13 @@ const accessToken = isServer
     window.env.STORYBLOK_PREVIEW_TOKEN;
 
 export const loader = async (args: LoaderFunctionArgs) => {
+  invariantResponse(
+    accessToken,
+    "You need to provide an access token to interact with Storyblok API.",
+    {
+      status: 401,
+    }
+  );
   const sbApi = getStoryblokApi();
   const { data: config } = await sbApi.get(`cdn/stories/config`, {
     version: "draft",
@@ -46,6 +54,7 @@ export const loader = async (args: LoaderFunctionArgs) => {
   const { data } = await sbApi.get(`cdn/stories/home`, {
     version: "draft",
   });
+
   const story = data?.story;
   const seo = story?.content?.seo_plugin?.title
     ? story?.content?.seo_plugin
@@ -66,7 +75,7 @@ export const loader = async (args: LoaderFunctionArgs) => {
 };
 
 export const meta: MetaFunction = ({ data }: { data: any }) => {
-  return implementSeo(data.seo, data.story?.name);
+  return implementSeo(data?.seo, data?.story?.name);
 };
 
 const components = {
@@ -97,8 +106,7 @@ export const links: LinksFunction = () => [
   { rel: "stylesheet", href: styles },
 ];
 
-export default function App() {
-  const { env } = useLoaderData<typeof loader>();
+const Document = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en">
       <head>
@@ -108,18 +116,46 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <Layout>
-          <Outlet />
-        </Layout>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `window.env = ${JSON.stringify(env)}`,
-          }}
-        />
+        {children}
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
       </body>
     </html>
+  );
+};
+
+export default function App() {
+  const { env } = useLoaderData<typeof loader>();
+  return (
+    <Document>
+      <Layout>
+        <Outlet />
+      </Layout>
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `window.env = ${JSON.stringify(env)}`,
+        }}
+      />
+    </Document>
+  );
+}
+
+export function ErrorBoundary() {
+  return (
+    <Document>
+      <div className="flex-1">
+        <GeneralErrorBoundary
+          statusHandlers={{
+            401: (e) => (
+              <div className="container max-w-2xl  h-full bg-primary mx-auto text-2xl text-white font-bold text-center p-10 mt-20 rounded-lg">
+                You need to provide an access token to interact with Storyblok
+                API.
+              </div>
+            ),
+          }}
+        />
+      </div>
+    </Document>
   );
 }

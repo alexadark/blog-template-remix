@@ -1,18 +1,34 @@
-import { getPostCardData, getTotal, getPerPage } from "~/utils";
+import {
+  getPerPage,
+  getPostCardData,
+  getTotal,
+  invariantResponse,
+} from "~/utils";
 import { getStoryblokApi } from "@storyblok/react";
 import type { PostStoryblok } from "~/types";
 import { json, type LoaderFunctionArgs } from "@remix-run/node";
 
 export const getContentData = async (
   params: LoaderFunctionArgs,
-  contentType: string
+  contentType?: string
 ) => {
   let slug = params["*"] ?? "home";
   const sbApi = getStoryblokApi();
   const resolveRelations = ["post.categories", "post.tags", "post.author"];
+  const endpoint = contentType
+    ? `cdn/stories/${contentType}/${slug}`
+    : `cdn/stories/${slug}`;
 
-  const { data } = await sbApi.get(`cdn/stories/${contentType}/${slug}`, {
-    version: "draft",
+  const { data } = await sbApi
+    .get(endpoint, {
+      version: "draft",
+    })
+    .catch((e) => {
+      console.log("e", e);
+      return { data: null };
+    });
+  invariantResponse(data, `there is no page with slug ${slug}`, {
+    status: 404,
   });
 
   const story = data?.story;
