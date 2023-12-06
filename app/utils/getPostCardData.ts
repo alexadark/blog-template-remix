@@ -8,5 +8,6 @@ export function getPostCardData(p: PostStoryblok) {
     teaser: p.content.teaser,
     image: p.content.image,
     categories: p.content.categories,
+    url: p.content.url,
   };
 }

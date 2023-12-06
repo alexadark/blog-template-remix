@@ -26,12 +26,7 @@ export const PostsList = ({ grid, uuid }: PostsListType) => {
   }
 
   const sbApi = getStoryblokApi();
-  const resolveRelations = [
-    "post.categories",
-    "post.tags",
-    "post.author",
-    "post.comments",
-  ];
+  const resolveRelations = ["post.categories", "post.tags", "post.author"];
 
   const perPage = (globalData as GlobalData)?.perPage;
 

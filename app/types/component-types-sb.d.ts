@@ -84,11 +84,6 @@ export interface ConfigStoryblok {
 
 export type MultilinkStoryblok =
   | {
-      cached_url?: string;
-      linktype?: string;
-      [k: string]: any;
-    }
-  | {
       id?: string;
       cached_url?: string;
       anchor?: string;
@@ -139,7 +134,7 @@ export type MultilinkStoryblok =
 
 export interface ContentStoryblok {
   text?: RichtextStoryblok;
-  button?: MultilinkStoryblok;
+  button?: Exclude<MultilinkStoryblok, {linktype?: "email"} | {linktype?: "asset"}>;
   _uid: string;
   component: "content";
   [k: string]: any;
@@ -155,7 +150,7 @@ export interface LastPostsStoryblok {
 }
 
 export interface NavItemStoryblok {
-  link?: MultilinkStoryblok;
+  link?: Exclude<MultilinkStoryblok, {linktype?: "email"} | {linktype?: "asset"}>;
   label?: string;
   location?: "" | "header" | "footer";
   _uid: string;
@@ -164,7 +159,22 @@ export interface NavItemStoryblok {
 }
 
 export interface PageStoryblok {
-  body?: any[];
+  body?: (
+    | AllPostsStoryblok
+    | AuthorStoryblok
+    | CategoryStoryblok
+    | CodeBlockStoryblok
+    | ConfigStoryblok
+    | ContentStoryblok
+    | LastPostsStoryblok
+    | NavItemStoryblok
+    | PageStoryblok
+    | PostStoryblok
+    | SeoStoryblok
+    | SocialItemStoryblok
+    | TagStoryblok
+    | TeaserStoryblok
+  )[];
   seo?: SeoStoryblok[];
   _uid: string;
   component: "page";
@@ -176,6 +186,7 @@ export interface PostStoryblok {
   headline?: string;
   image?: AssetStoryblok;
   teaser?: string;
+  url?: Exclude<MultilinkStoryblok, {linktype?: "email"} | {linktype?: "asset"}>;
   post_content?: (CodeBlockStoryblok | ContentStoryblok)[];
   author?: StoryblokStory<AuthorStoryblok> | string;
   categories?: (StoryblokStory<CategoryStoryblok> | string)[];
@@ -202,7 +213,7 @@ export interface SeoStoryblok {
 export interface SocialItemStoryblok {
   name?: string;
   icon?: AssetStoryblok;
-  url?: MultilinkStoryblok;
+  url?: Exclude<MultilinkStoryblok, {linktype?: "email"} | {linktype?: "asset"}>;
   _uid: string;
   component: "social-item";
   [k: string]: any;

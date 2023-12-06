@@ -10,7 +10,7 @@ import { SocialShare } from "~/components/SocialShare";
 import { AuthorBox } from "~/components/AuthorBox";
 
 export const Post = ({ blok }: PostStoryblok) => {
-  const { publishDate, id, name } = useLoaderData<typeof loader>();
+  const { publishDate, id } = useLoaderData<typeof loader>();
 
   const { headline, categories, image, tags, author, post_content } = blok;
 

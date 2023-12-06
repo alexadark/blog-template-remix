@@ -7,9 +7,24 @@ interface PostCardType {
   post: PostStoryblok;
   grid?: boolean;
 }
+const LinkWrapper = ({ children, slug, url }: any) => {
+  if (url) {
+    return (
+      <a href={url} target="_blank" rel="noopener noreferrer">
+        {children}
+      </a>
+    );
+  } else {
+    return (
+      <Link prefetch="intent" to={`/${slug}`}>
+        {children}
+      </Link>
+    );
+  }
+};
 
 export const PostCard = ({ post, grid }: PostCardType) => {
-  const { full_slug, published_at: date, content } = post;
+  const { full_slug, published_at: date, content, url } = post;
 
   const headline = post.headline ? post.headline : content.headline;
   const teaser = post.teaser ? post.teaser : content.teaser;
@@ -34,7 +49,7 @@ export const PostCard = ({ post, grid }: PostCardType) => {
           <Categories categories={categories} />
         </div>
       </div>
-      <Link prefetch="intent" to={`/${full_slug}`}>
+      <LinkWrapper url={url?.url} slug={full_slug}>
         <div className={`${!grid && "md:flex justify-between gap-5"}`}>
           {image && (
             <div className="flex items-center">
@@ -64,7 +79,7 @@ export const PostCard = ({ post, grid }: PostCardType) => {
             <p>{teaser}</p>
           </div>
         </div>
-      </Link>
+      </LinkWrapper>
     </article>
   );
 };
