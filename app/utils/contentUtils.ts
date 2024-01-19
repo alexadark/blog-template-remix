@@ -7,6 +7,7 @@ import {
 import { getStoryblokApi } from "@storyblok/react";
 import type { PostStoryblok } from "~/types";
 import { json, type LoaderFunctionArgs } from "@remix-run/node";
+import { cacheControl } from "~/utils/cacheControl";
 
 export const getContentData = async (
   params: LoaderFunctionArgs,
@@ -70,6 +71,9 @@ export const getContentData = async (
 export const createLoader =
   (contentType: string) =>
   async ({ params }: LoaderFunctionArgs) => {
+    let headers = {
+      ...cacheControl,
+    };
     const data = await getContentData(params, contentType);
-    return json(data);
+    return json(data, { headers });
   };

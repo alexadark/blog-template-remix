@@ -1,12 +1,17 @@
-import { json } from "@remix-run/node";
+import {
+  json,
+  type HeadersFunction,
+  type MetaFunction,
+  type LoaderFunctionArgs,
+} from "@remix-run/node";
 import { getStoryblokApi } from "@storyblok/react";
 import { useStoryblokData } from "~/hooks";
-import type { MetaFunction, LoaderFunctionArgs } from "@remix-run/node";
 import { implementSeo, getPostCardData, invariantResponse } from "~/utils";
 import type { PostStoryblok } from "~/types";
 import { useParams } from "@remix-run/react";
 import { GeneralErrorBoundary } from "~/components/GeneralErrorBoundary";
 import { NotFoundPage } from "~/components/NotFoundPage";
+import { cacheControl } from "~/utils/cacheControl";
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   let slug = params["*"] ?? "home";
@@ -26,7 +31,9 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
   invariantResponse(data, `there is no page with slug ${slug}`, {
     status: 404,
   });
-
+  let headers = {
+    ...cacheControl,
+  };
   const numberOfPosts = data.story.content.body?.find(
     (item: { component: string }) => item.component === "last-posts"
   )?.number_of_posts;
@@ -44,14 +51,21 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
     ? story?.content?.seo_plugin
     : story?.content?.seo[0];
 
-  return json({
-    blok: story.content,
-    name: story.name,
-    lastPosts: lastPosts?.stories?.map((p: PostStoryblok) =>
-      getPostCardData(p)
-    ),
-    seo,
-  });
+  return json(
+    {
+      blok: story.content,
+      name: story.name,
+      lastPosts: lastPosts?.stories?.map((p: PostStoryblok) =>
+        getPostCardData(p)
+      ),
+      seo,
+    },
+    { headers }
+  );
+};
+
+export let headers: HeadersFunction = ({ loaderHeaders }) => {
+  return { "Cache-Control": loaderHeaders.get("Cache-Control") };
 };
 
 export const meta: MetaFunction = ({ data }: { data: any }) => {

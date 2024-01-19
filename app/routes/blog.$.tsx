@@ -1,7 +1,11 @@
-import { json } from "@remix-run/node";
+import {
+  json,
+  type LoaderFunctionArgs,
+  type MetaFunction,
+  type HeadersFunction,
+} from "@remix-run/node";
 import { useStoryblokData } from "~/hooks";
 import { getStoryblokApi } from "@storyblok/react";
-import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
 import {
   implementSeo,
   getPostCardData,
@@ -11,6 +15,7 @@ import {
 import type { PostStoryblok } from "~/types";
 import { GeneralErrorBoundary } from "~/components/GeneralErrorBoundary";
 import { NotFoundPage } from "~/components/NotFoundPage";
+import { cacheControl } from "~/utils/cacheControl";
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   let slug = params["*"] ?? "home";
@@ -29,6 +34,9 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
   invariantResponse(data, `there is no page with slug ${slug}`, {
     status: 404,
   });
+  let headers = {
+    ...cacheControl,
+  };
   let page = Number.isNaN(Number(params.pageNumber))
     ? 1
     : Number(params.pageNumber);
@@ -56,18 +64,23 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
 
   const posts = blog?.stories?.map((p: PostStoryblok) => getPostCardData(p));
 
-  return json({
-    blok: story.content,
-    publishDate: story.published_at,
-    id: story.id,
-    name: story.name,
-    posts,
-    total,
-    perPage,
-    seo,
-  });
+  return json(
+    {
+      blok: story.content,
+      publishDate: story.published_at,
+      id: story.id,
+      name: story.name,
+      posts,
+      total,
+      perPage,
+      seo,
+    },
+    { headers }
+  );
 };
-
+export let headers: HeadersFunction = ({ loaderHeaders }) => {
+  return { "Cache-Control": loaderHeaders.get("Cache-Control") };
+};
 export const meta: MetaFunction = ({ data }: { data: any }) => {
   return implementSeo(data?.seo, data?.name);
 };
