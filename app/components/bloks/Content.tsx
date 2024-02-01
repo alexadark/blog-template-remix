@@ -1,12 +1,17 @@
 import { storyblokEditable } from "@storyblok/react";
-import { render } from "storyblok-rich-text-react-renderer";
+import Markdown from "markdown-to-jsx";
+
 import type { ContentStoryblok } from "~/types";
 
 export const Content = ({ blok }: ContentStoryblok) => {
   const { _uid, text } = blok;
   return (
-    <div {...storyblokEditable(blok)} key={_uid} className="content">
-      {render(text)}
-    </div>
+    <>
+      {text && (
+        <Markdown {...storyblokEditable(blok)} key={_uid} className="content">
+          {text}
+        </Markdown>
+      )}
+    </>
   );
 };
