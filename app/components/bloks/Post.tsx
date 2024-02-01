@@ -11,7 +11,7 @@ import { AuthorBox } from "~/components/AuthorBox";
 import Markdown from "markdown-to-jsx";
 
 export const Post = ({ blok }: PostStoryblok) => {
-  const { publishDate, id } = useLoaderData<typeof loader>();
+  const { publishDate, id, name } = useLoaderData<typeof loader>();
 
   const { headline, categories, image, tags, author, md_content } = blok;
 
