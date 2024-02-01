@@ -18,3 +18,5 @@ node_modules
 localhost-key.pem
 localhost.pem
 api/*
+
+/.idea

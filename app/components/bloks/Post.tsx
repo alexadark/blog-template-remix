@@ -1,4 +1,4 @@
-import { storyblokEditable, StoryblokComponent } from "@storyblok/react";
+import { storyblokEditable } from "@storyblok/react";
 import { useLoaderData } from "@remix-run/react";
 import { format } from "date-fns";
 import type { PostStoryblok } from "~/types";
@@ -8,11 +8,12 @@ import { Tags } from "~/components/Tags";
 import { DisqusComments } from "~/components/DisqusComments";
 import { SocialShare } from "~/components/SocialShare";
 import { AuthorBox } from "~/components/AuthorBox";
+import Markdown from "markdown-to-jsx";
 
 export const Post = ({ blok }: PostStoryblok) => {
   const { publishDate, id } = useLoaderData<typeof loader>();
 
-  const { headline, categories, image, tags, author, post_content } = blok;
+  const { headline, categories, image, tags, author, md_content } = blok;
 
   const url = typeof window !== "undefined" && window.location.href;
   return (
@@ -36,11 +37,7 @@ export const Post = ({ blok }: PostStoryblok) => {
         )}
         <h1>{headline}</h1>
         <Tags tags={tags} className="space-x-2" />
-
-        {post_content?.map((nestedBlok: any) => (
-          <StoryblokComponent blok={nestedBlok} key={nestedBlok._uid} />
-        ))}
-
+        <Markdown className="content">{md_content}</Markdown>
         <div className="flex justify-center xl:hidden">
           <AuthorBox author={author} component={"author"} />
         </div>
