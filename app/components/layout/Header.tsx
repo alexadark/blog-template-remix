@@ -13,7 +13,7 @@ export const Header = () => {
     <img
       src={logo.filename}
       alt={logo.alt}
-      className="h-8 w-8 mr-2 rounded-full border-2 border-"
+      className="h-8 w-8 mr-2 rounded-full border-2 border-secondary"
     />
   );
   const branding = (

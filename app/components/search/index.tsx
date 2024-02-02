@@ -1,7 +1,6 @@
 import { Fragment, useState, useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { HiOutlineSearch as SearchIcon } from "react-icons/hi/index.js";
-import { MdClose as Close } from "react-icons/md/index.js";
+import { Search as SearchIcon, X as Close } from "lucide-react";
 import { useNavigation } from "@remix-run/react";
 import { SearchForm } from "./SearchForm";
 import clsx from "clsx";

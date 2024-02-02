@@ -21,7 +21,6 @@ export const Post = ({ blok }: PostStoryblok) => {
       <article
         {...storyblokEditable(blok)}
         key={blok._uid}
-        kz
         className="max-w-full xl:max-w-[760px] 2xl:max-w-content"
       >
         <div className="flex flex-wrap justify-between align-middle mb-7">

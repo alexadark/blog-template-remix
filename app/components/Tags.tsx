@@ -1,6 +1,6 @@
 import type { TagStoryblok } from "~/types";
 import { Link } from "@remix-run/react";
-import { LuTag as TagIcon } from "react-icons/lu/index.js";
+import { Tag as TagIcon } from "lucide-react";
 
 type TagsProps = {
   tags: TagStoryblok[];

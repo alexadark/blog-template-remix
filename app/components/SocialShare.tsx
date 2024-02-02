@@ -1,9 +1,9 @@
 import {
-  FaTwitter as TwitterIcon,
-  FaLinkedinIn as LinkedinIcon,
-  FaFacebookF as FbIcon,
-  FaEnvelope as MailIcon,
-} from "react-icons/fa/index.js";
+  Twitter as TwitterIcon,
+  Linkedin as LinkedinIcon,
+  Facebook as FbIcon,
+  Mail as MailIcon,
+} from "lucide-react";
 
 interface SocialShareType {
   url: string | false;

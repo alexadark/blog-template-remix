@@ -1,7 +1,6 @@
 import { useState, Fragment, useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { MdClose as Close } from "react-icons/md/index.js";
-import { HiOutlineMenuAlt2 as Hamburger } from "react-icons/hi/index.js";
+import { X as Close, AlignLeft as Hamburger } from "lucide-react";
 import clsx from "clsx";
 import { useNavigation } from "@remix-run/react";
 import { SidebarContent } from "./SidebarContent";
