@@ -15,7 +15,7 @@ export const MDRenderer = ({ children, className }: MDRendererProps) => {
   useEffect(() => {
     const loadHighlighter = async () => {
       const shikiHighlighter = await getHighlighter({
-        themes: ["dracula"],
+        themes: ["dracula", "rose-pine"],
         langs: ["javascript"],
       });
       setHighlighter(shikiHighlighter);
@@ -25,13 +25,15 @@ export const MDRenderer = ({ children, className }: MDRendererProps) => {
   }, []);
 
   // Function to render code with syntax highlighting
-  const renderCode = (code: any, language: any) => {
-    if (!highlighter) return code;
-    return highlighter.codeToHtml(code, { lang: language, theme: "dracula" });
-  };
-
-  // Custom options for the MDRenderer component, including overrides for links and code blocks
   const options = useMemo(() => {
+    const renderCode = (code: any, language: any) => {
+      if (!highlighter) return code;
+      return (highlighter as any).codeToHtml(code, {
+        lang: language,
+        theme: "dracula",
+      });
+    };
+
     return {
       overrides: {
         a: {
@@ -58,7 +60,13 @@ export const MDRenderer = ({ children, className }: MDRendererProps) => {
           },
         },
         code: {
-          component: ({ children, className }) => {
+          component: ({
+            children,
+            className,
+          }: {
+            children: React.ReactNode;
+            className: string;
+          }) => {
             const language = className
               ? className.replace("language-", "")
               : "javascript";
@@ -75,7 +83,7 @@ export const MDRenderer = ({ children, className }: MDRendererProps) => {
         },
       },
     };
-  }, [renderCode]);
+  }, [highlighter]);
 
   return (
     <MD options={options} className={className}>

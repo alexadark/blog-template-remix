@@ -32,7 +32,14 @@
   }
 
   .content {
-    @apply prose text-lg text-light max-w-none prose-headings:text-primary prose-img:rounded-xl text-opacity-80 my-3;
+    @apply prose text-lg text-light max-w-none prose-headings:text-primary prose-img:rounded-xl text-opacity-80 my-3 prose-pre:m-0 prose-pre:p-0 prose-pre:bg-transparent;
+
+    & > pre {
+      @apply p-0;
+      pre pre {
+        @apply p-10 rounded-3xl border border-secondary;
+      }
+    }
   }
   blockquote {
     @apply py-1 !text-secondary bg-dark-25 text-opacity-80 !border-secondary;
