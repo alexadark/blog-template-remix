@@ -1,7 +1,7 @@
 import { storyblokEditable } from "@storyblok/react";
 
 import type { AllPostsStoryblok } from "~/types";
-import { render } from "storyblok-rich-text-react-renderer";
+import MD from "markdown-to-jsx";
 
 import { PostsList } from "~/components/PostsList";
 
@@ -12,7 +12,8 @@ export const AllPosts = ({ blok }: AllPostsStoryblok) => {
     <div {...storyblokEditable(blok)} key={_uid}>
       <div className="mb-10">
         <h1>{headline}</h1>
-        <p>{render(intro)}</p>
+
+        <MD className="content">{intro}</MD>
       </div>
       <PostsList grid={grid} />
     </div>

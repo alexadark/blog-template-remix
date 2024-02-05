@@ -1,5 +1,5 @@
 import { storyblokEditable } from "@storyblok/react";
-import Markdown from "markdown-to-jsx";
+import { MDRenderer } from "~/utils";
 
 import type { ContentStoryblok } from "~/types";
 
@@ -8,9 +8,9 @@ export const Content = ({ blok }: ContentStoryblok) => {
   return (
     <>
       {text && (
-        <Markdown {...storyblokEditable(blok)} key={_uid} className="content">
+        <MDRenderer {...storyblokEditable(blok)} key={_uid} className="content">
           {text}
-        </Markdown>
+        </MDRenderer>
       )}
     </>
   );

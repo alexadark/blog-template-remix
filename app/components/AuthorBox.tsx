@@ -1,6 +1,6 @@
 import type { AuthorStoryblok } from "~/types";
 import { Link } from "@remix-run/react";
-import { render } from "storyblok-rich-text-react-renderer";
+import { MDRenderer } from "~/utils";
 
 export const AuthorBox = ({ author }: AuthorStoryblok) => {
   const {
@@ -20,7 +20,7 @@ export const AuthorBox = ({ author }: AuthorStoryblok) => {
         </div>
         <h4 className="text-links uppercase text-center">{name}</h4>{" "}
       </Link>
-      <div className="text-center">{render(bio)}</div>
+      <MDRenderer className="text-center content">{bio}</MDRenderer>
     </div>
   );
 };

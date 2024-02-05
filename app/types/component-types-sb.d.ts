@@ -1,17 +1,8 @@
 import {StoryblokStory} from 'storyblok-generate-ts'
 
-export interface RichtextStoryblok {
-  type: string;
-  content?: RichtextStoryblok[];
-  marks?: RichtextStoryblok[];
-  attrs?: any;
-  text?: string;
-  [k: string]: any;
-}
-
 export interface AllPostsStoryblok {
   headline?: string;
-  intro?: RichtextStoryblok;
+  intro?: string;
   grid?: boolean;
   _uid: string;
   component: "all-posts";
@@ -31,7 +22,7 @@ export interface AssetStoryblok {
 
 export interface AuthorStoryblok {
   avatar?: AssetStoryblok;
-  bio?: RichtextStoryblok;
+  bio?: string;
   seo_plugin?: {
     _uid?: string;
     title?: string;
@@ -67,6 +58,15 @@ export interface CategoryStoryblok {
 export interface CodeBlockStoryblok {
   _uid: string;
   component: "code-block";
+  [k: string]: any;
+}
+
+export interface RichtextStoryblok {
+  type: string;
+  content?: RichtextStoryblok[];
+  marks?: RichtextStoryblok[];
+  attrs?: any;
+  text?: string;
   [k: string]: any;
 }
 
@@ -133,7 +133,7 @@ export type MultilinkStoryblok =
     };
 
 export interface ContentStoryblok {
-  text?: RichtextStoryblok;
+  text?: string;
   button?: Exclude<MultilinkStoryblok, {linktype?: "email"} | {linktype?: "asset"}>;
   _uid: string;
   component: "content";
@@ -186,8 +186,8 @@ export interface PostStoryblok {
   headline?: string;
   image?: AssetStoryblok;
   teaser?: string;
+  md_content?: string;
   url?: Exclude<MultilinkStoryblok, {linktype?: "email"} | {linktype?: "asset"}>;
-  post_content?: (CodeBlockStoryblok | ContentStoryblok)[];
   author?: StoryblokStory<AuthorStoryblok> | string;
   categories?: (StoryblokStory<CategoryStoryblok> | string)[];
   tags?: (StoryblokStory<TagStoryblok> | string)[];

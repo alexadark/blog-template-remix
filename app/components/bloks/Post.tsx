@@ -8,7 +8,7 @@ import { Tags } from "~/components/Tags";
 import { DisqusComments } from "~/components/DisqusComments";
 import { SocialShare } from "~/components/SocialShare";
 import { AuthorBox } from "~/components/AuthorBox";
-import Markdown from "markdown-to-jsx";
+import { MDRenderer } from "~/utils";
 
 export const Post = ({ blok }: PostStoryblok) => {
   const { publishDate, id, name } = useLoaderData<typeof loader>();
@@ -37,7 +37,7 @@ export const Post = ({ blok }: PostStoryblok) => {
         )}
         <h1>{headline}</h1>
         <Tags tags={tags} className="space-x-2" />
-        <Markdown className="content">{md_content}</Markdown>
+        <MDRenderer className="content">{md_content}</MDRenderer>
         <div className="flex justify-center xl:hidden">
           <AuthorBox author={author} component={"author"} />
         </div>

@@ -3,15 +3,15 @@
     {
       "name": "all-posts",
       "display_name": null,
-      "created_at": "2023-10-17T08:15:16.631Z",
-      "updated_at": "2023-10-17T08:15:16.631Z",
-      "id": 4737046,
+      "created_at": "2024-01-23T16:02:53.258Z",
+      "updated_at": "2024-02-05T09:12:11.649Z",
+      "id": 5218856,
       "schema": {
         "headline": {
           "type": "text"
         },
         "intro": {
-          "type": "richtext"
+          "type": "markdown"
         },
         "grid": {
           "type": "boolean"
@@ -32,9 +32,9 @@
     {
       "name": "author",
       "display_name": null,
-      "created_at": "2023-10-17T08:15:16.661Z",
-      "updated_at": "2023-10-20T11:48:03.038Z",
-      "id": 4737048,
+      "created_at": "2024-01-23T16:02:53.112Z",
+      "updated_at": "2024-02-05T09:21:29.726Z",
+      "id": 5218849,
       "schema": {
         "avatar": {
           "type": "asset",
@@ -43,7 +43,7 @@
           ]
         },
         "bio": {
-          "type": "richtext"
+          "type": "markdown"
         },
         "tab-5f9e8135-80bd-4415-b7b9-981b3acab455": {
           "display_name": "Seo",
@@ -89,9 +89,9 @@
     {
       "name": "category",
       "display_name": null,
-      "created_at": "2023-10-17T08:15:16.676Z",
-      "updated_at": "2023-10-31T15:41:48.565Z",
-      "id": 4737049,
+      "created_at": "2024-01-23T16:02:53.094Z",
+      "updated_at": "2024-01-23T16:02:53.094Z",
+      "id": 5218848,
       "schema": {
         "seo": {
           "type": "bloks",
@@ -149,9 +149,9 @@
     {
       "name": "code-block",
       "display_name": null,
-      "created_at": "2023-10-17T08:15:16.585Z",
-      "updated_at": "2023-10-17T08:15:16.585Z",
-      "id": 4737043,
+      "created_at": "2024-01-23T16:02:53.305Z",
+      "updated_at": "2024-01-23T16:02:53.305Z",
+      "id": 5218858,
       "schema": {
         "code": {
           "type": "custom",
@@ -196,9 +196,9 @@
     {
       "name": "config",
       "display_name": null,
-      "created_at": "2023-10-17T08:15:16.569Z",
-      "updated_at": "2023-11-03T10:23:19.839Z",
-      "id": 4737042,
+      "created_at": "2024-01-23T16:02:53.051Z",
+      "updated_at": "2024-01-23T16:02:53.051Z",
+      "id": 5218846,
       "schema": {
         "tab-acc2463a-e449-426d-a69d-2f61306438a7": {
           "display_name": "Header",
@@ -292,13 +292,13 @@
     {
       "name": "content",
       "display_name": null,
-      "created_at": "2023-10-17T08:15:16.782Z",
-      "updated_at": "2023-10-17T08:15:16.782Z",
-      "id": 4737056,
+      "created_at": "2024-01-23T16:02:53.132Z",
+      "updated_at": "2024-02-01T16:23:45.421Z",
+      "id": 5218850,
       "schema": {
         "text": {
           "translatable": true,
-          "type": "richtext"
+          "type": "markdown"
         },
         "button": {
           "translatable": true,
@@ -321,9 +321,9 @@
     {
       "name": "last-posts",
       "display_name": null,
-      "created_at": "2023-10-17T08:15:16.615Z",
-      "updated_at": "2023-10-17T08:15:16.615Z",
-      "id": 4737045,
+      "created_at": "2024-01-23T16:02:53.282Z",
+      "updated_at": "2024-01-23T16:02:53.282Z",
+      "id": 5218857,
       "schema": {
         "headline": {
           "type": "text",
@@ -354,9 +354,9 @@
     {
       "name": "nav-item",
       "display_name": null,
-      "created_at": "2023-10-17T08:15:16.753Z",
-      "updated_at": "2023-10-17T08:15:16.753Z",
-      "id": 4737054,
+      "created_at": "2024-01-23T16:02:53.152Z",
+      "updated_at": "2024-01-23T16:02:53.152Z",
+      "id": 5218851,
       "schema": {
         "link": {
           "translatable": true,
@@ -398,9 +398,9 @@
     {
       "name": "page",
       "display_name": null,
-      "created_at": "2023-10-17T08:15:16.708Z",
-      "updated_at": "2023-10-31T15:41:22.159Z",
-      "id": 4737051,
+      "created_at": "2024-01-23T16:02:53.213Z",
+      "updated_at": "2024-01-23T16:02:53.213Z",
+      "id": 5218854,
       "schema": {
         "body": {
           "type": "bloks"
@@ -439,9 +439,9 @@
     {
       "name": "post",
       "display_name": "Post",
-      "created_at": "2023-10-17T08:15:16.647Z",
-      "updated_at": "2023-12-06T10:20:14.643Z",
-      "id": 4737047,
+      "created_at": "2024-01-23T16:02:53.021Z",
+      "updated_at": "2024-01-23T16:06:06.344Z",
+      "id": 5218845,
       "schema": {
         "headline": {
           "translatable": true,
@@ -460,19 +460,14 @@
           "type": "textarea",
           "pos": 2
         },
-        "url": {
-          "type": "multilink",
+        "md_content": {
+          "type": "markdown",
           "pos": 3
         },
-        "post_content": {
-          "type": "bloks",
+        "url": {
+          "type": "multilink",
           "pos": 4,
-          "restrict_type": "groups",
-          "restrict_components": true,
-          "component_whitelist": [],
-          "component_group_whitelist": [
-            "d9e789f7-6ebc-4761-9829-c875e43d005c"
-          ]
+          "allow_target_blank": true
         },
         "author": {
           "type": "option",
@@ -534,9 +529,9 @@
     {
       "name": "seo",
       "display_name": null,
-      "created_at": "2023-10-17T08:15:16.690Z",
-      "updated_at": "2023-10-17T08:15:16.690Z",
-      "id": 4737050,
+      "created_at": "2024-01-23T16:02:53.234Z",
+      "updated_at": "2024-01-23T16:02:53.234Z",
+      "id": 5218855,
       "schema": {
         "title": {
           "translatable": true,
@@ -587,9 +582,9 @@
     {
       "name": "social-item",
       "display_name": null,
-      "created_at": "2023-10-17T08:15:16.738Z",
-      "updated_at": "2023-10-17T08:15:16.738Z",
-      "id": 4737053,
+      "created_at": "2024-01-23T16:02:53.169Z",
+      "updated_at": "2024-01-23T16:02:53.169Z",
+      "id": 5218852,
       "schema": {
         "name": {
           "type": "text",
@@ -622,9 +617,9 @@
     {
       "name": "tag",
       "display_name": null,
-      "created_at": "2023-10-17T08:15:16.600Z",
-      "updated_at": "2023-10-31T15:41:38.729Z",
-      "id": 4737044,
+      "created_at": "2024-01-23T16:02:53.077Z",
+      "updated_at": "2024-01-23T16:02:53.077Z",
+      "id": 5218847,
       "schema": {
         "seo": {
           "type": "bloks",
@@ -675,9 +670,9 @@
     {
       "name": "teaser",
       "display_name": null,
-      "created_at": "2023-10-17T08:15:16.723Z",
-      "updated_at": "2023-10-17T08:15:16.723Z",
-      "id": 4737052,
+      "created_at": "2024-01-23T16:02:53.187Z",
+      "updated_at": "2024-01-23T16:02:53.187Z",
+      "id": 5218853,
       "schema": {
         "headline": {
           "type": "text"
