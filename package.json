@@ -27,6 +27,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-syntax-highlighter": "^15.5.0",
+    "shiki": "1.0.0-beta.5",
     "storyblok-rich-text-react-renderer": "^2.9.1"
   },
   "devDependencies": {

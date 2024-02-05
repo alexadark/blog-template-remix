@@ -1,6 +1,7 @@
 import MD from "markdown-to-jsx";
-import { useMemo } from "react";
+import { useMemo, useEffect, useState } from "react";
 import { Link } from "@remix-run/react";
+import { getHighlighter } from "shiki";
 
 interface MDRendererProps {
   children: string;
@@ -8,9 +9,28 @@ interface MDRendererProps {
 }
 
 export const MDRenderer = ({ children, className }: MDRendererProps) => {
-  /**
-   * Custom options for the MDRenderer component.
-   */
+  const [highlighter, setHighlighter] = useState(null);
+
+  // Asynchronously load the Shiki highlighter
+  useEffect(() => {
+    const loadHighlighter = async () => {
+      const shikiHighlighter = await getHighlighter({
+        themes: ["dracula"],
+        langs: ["javascript"],
+      });
+      setHighlighter(shikiHighlighter);
+    };
+
+    loadHighlighter();
+  }, []);
+
+  // Function to render code with syntax highlighting
+  const renderCode = (code: any, language: any) => {
+    if (!highlighter) return code;
+    return highlighter.codeToHtml(code, { lang: language, theme: "dracula" });
+  };
+
+  // Custom options for the MDRenderer component, including overrides for links and code blocks
   const options = useMemo(() => {
     return {
       overrides: {
@@ -37,9 +57,25 @@ export const MDRenderer = ({ children, className }: MDRendererProps) => {
             return <Link to={href}>{children}</Link>;
           },
         },
+        code: {
+          component: ({ children, className }) => {
+            const language = className
+              ? className.replace("language-", "")
+              : "javascript";
+            return (
+              <pre>
+                <code
+                  dangerouslySetInnerHTML={{
+                    __html: renderCode(children, language),
+                  }}
+                />
+              </pre>
+            );
+          },
+        },
       },
     };
-  }, []);
+  }, [renderCode]);
 
   return (
     <MD options={options} className={className}>
