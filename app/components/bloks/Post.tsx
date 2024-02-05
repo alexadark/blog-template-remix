@@ -39,13 +39,17 @@ export const Post = ({ blok }: PostStoryblok) => {
         <Tags tags={tags} className="space-x-2" />
         <MDRenderer className="content">{md_content}</MDRenderer>
         <div className="flex justify-center xl:hidden">
-          <AuthorBox author={author} component={"author"} />
+          <AuthorBox author={author} component={"author"} _uid={blok._uid} />
         </div>
         {url && <SocialShare url={url} />}
       </article>
 
       <aside className="fixed z-10 top-[4.6rem] bottom-0 right-[max(0px,calc(50%-45rem))] w-[19.5rem] py-6 px-8 overflow-y-auto hidden xl:block">
-        <AuthorBox author={author} component={"author"} />
+        <AuthorBox
+          author={{ ...author, _uid: blok._uid }}
+          component={"author"}
+          _uid={blok._uid}
+        />
       </aside>
 
       <DisqusComments

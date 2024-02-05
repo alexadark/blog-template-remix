@@ -13,10 +13,12 @@ export function DisqusComments({
   url,
 }: DisqusCommentsProps) {
   useEffect(() => {
-    window.disqus_config = function () {
-      this.page.url = url;
-      this.page.identifier = identifier;
-      this.page.title = title;
+    (window as any).disqus_config = {
+      page: {
+        url,
+        identifier,
+        title,
+      },
     };
 
     const script = document.createElement("script");
