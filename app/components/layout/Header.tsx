@@ -23,7 +23,7 @@ export const Header = () => {
   );
 
   return (
-    <header className=" top-0 z-40 flex-none w-full py-3 border-b backdrop-blur border-dark-25  bg-dark-100 lg:bg-transparent">
+    <header className="fixed top-0 z-40 flex-none w-full py-3 border-b border-dark-25 backdrop-filter backdrop-blur-lg bg-transparent">
       <div className="max-w-site flex justify-between mx-auto align-center px-5">
         <Link prefetch="intent" to="/">
           {branding}

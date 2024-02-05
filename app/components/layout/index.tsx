@@ -13,7 +13,7 @@ export const Layout = ({ children }: Props) => {
         <Header />
         <div className="max-w-site mx-auto relative">
           <LeftSidebar />
-          <main className="pt-5 pb-10 mx-auto max-w-content px-5">
+          <main className="pt-20 pb-10 mx-auto max-w-content px-5">
             {children}
           </main>
         </div>
