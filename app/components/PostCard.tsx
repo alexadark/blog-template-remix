@@ -35,7 +35,7 @@ export const PostCard = ({ post, grid }: PostCardType) => {
     <article
       className={`${
         !grid && "mb-7"
-      } bg-dark-50 border border-dark-25  px-5 py-7 rounded-lg shadow-sm translate duration-500 hover:-translate-y-1 hover:shadow-primary relative`}
+      } bg-dark-50 border border-dark-25  px-5 py-7 rounded-lg shadow-xl duration-500 transition-[box-shadow,transform] hover:shadow-dark-25  relative hover:-translate-y-1`}
     >
       <div
         className={` ${
