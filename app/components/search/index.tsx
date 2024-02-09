@@ -37,7 +37,7 @@ export const Search = () => {
         <Dialog
           as="div"
           static
-          className={clsx("fixed inset-0 overflow-hidden", "z-20")}
+          className={clsx("fixed inset-0 overflow-hidden", "z-50")}
           open={open}
           onClose={setOpen}
         >

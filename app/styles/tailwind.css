@@ -36,8 +36,10 @@
 
     & > pre {
       @apply p-0;
-      pre pre {
-        @apply p-10 rounded-3xl border border-secondary;
+      pre {
+        pre {
+          @apply p-10 rounded-3xl border border-secondary;
+        }
       }
     }
   }
