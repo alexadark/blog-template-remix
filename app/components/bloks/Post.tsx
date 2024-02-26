@@ -1,5 +1,5 @@
 import { storyblokEditable } from "@storyblok/react";
-import { useLoaderData } from "@remix-run/react";
+import { useLoaderData, useMatches } from "@remix-run/react";
 import { format } from "date-fns";
 import type { PostStoryblok } from "~/types";
 import { Categories } from "~/components/Categories";
@@ -13,7 +13,13 @@ import { MDRenderer } from "~/utils";
 export const Post = ({ blok }: PostStoryblok) => {
   const { publishDate, id, name } = useLoaderData<typeof loader>();
 
-  const { headline, categories, image, tags, author, md_content } = blok;
+  const {
+    data: { defaultPostImage },
+  } = useMatches()[0];
+
+  let { headline, categories, image, tags, author, md_content } = blok;
+  image = image || defaultPostImage;
+  console.log(image, "image");
 
   const url = typeof window !== "undefined" && window.location.href;
   return (

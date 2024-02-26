@@ -77,6 +77,7 @@ export interface ConfigStoryblok {
   posts_per_page?: string;
   logo?: AssetStoryblok;
   title?: string;
+  default_post_image: AssetStoryblok;
   _uid: string;
   component: "config";
   [k: string]: any;

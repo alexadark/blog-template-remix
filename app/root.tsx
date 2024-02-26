@@ -51,6 +51,8 @@ export const loader = async (args: LoaderFunctionArgs) => {
     version: "draft",
     resolve_links: "url",
   });
+  console.log("config", config.story.content.default_post_image);
+
   const { data } = await sbApi.get(`cdn/stories/home`, {
     version: "draft",
   });
@@ -70,6 +72,7 @@ export const loader = async (args: LoaderFunctionArgs) => {
     logo: config?.story?.content?.logo,
     blogTitle: config?.story?.content?.title,
     logoTitle: config?.story?.content?.logo_title,
+    defaultPostImage: config?.story?.content?.default_post_image,
     seo,
   });
 };

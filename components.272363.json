@@ -197,7 +197,7 @@
       "name": "config",
       "display_name": null,
       "created_at": "2024-01-23T16:02:53.051Z",
-      "updated_at": "2024-01-23T16:02:53.051Z",
+      "updated_at": "2024-02-09T13:05:50.796Z",
       "id": 5218846,
       "schema": {
         "tab-acc2463a-e449-426d-a69d-2f61306438a7": {
@@ -219,15 +219,6 @@
             "nav-item"
           ],
           "pos": 0
-        },
-        "tab-61f9372a-fad8-4a4c-92ad-0ba2b3232b69": {
-          "display_name": "Social",
-          "keys": [
-            "social_items"
-          ],
-          "pos": 1,
-          "type": "tab",
-          "name": "tab-61f9372a-fad8-4a4c-92ad-0ba2b3232b69"
         },
         "social_items": {
           "type": "bloks",
@@ -259,7 +250,8 @@
         "tab-e9a08fd6-eac4-4a9e-b6fb-86d9f03adf98": {
           "display_name": "Settings",
           "keys": [
-            "posts_per_page"
+            "posts_per_page",
+            "default_post_image"
           ],
           "pos": 0,
           "type": "tab"
@@ -275,6 +267,22 @@
         },
         "title": {
           "type": "text"
+        },
+        "tab-61f9372a-fad8-4a4c-92ad-0ba2b3232b69": {
+          "display_name": "Social",
+          "keys": [
+            "social_items"
+          ],
+          "pos": 1,
+          "type": "tab",
+          "name": "tab-61f9372a-fad8-4a4c-92ad-0ba2b3232b69"
+        },
+        "default_post_image": {
+          "type": "asset",
+          "filetypes": [
+            "images"
+          ],
+          "required": true
         }
       },
       "image": null,
