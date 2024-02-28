@@ -55,12 +55,6 @@ export interface CategoryStoryblok {
   [k: string]: any;
 }
 
-export interface CodeBlockStoryblok {
-  _uid: string;
-  component: "code-block";
-  [k: string]: any;
-}
-
 export interface RichtextStoryblok {
   type: string;
   content?: RichtextStoryblok[];
@@ -164,7 +158,6 @@ export interface PageStoryblok {
     | AllPostsStoryblok
     | AuthorStoryblok
     | CategoryStoryblok
-    | CodeBlockStoryblok
     | ConfigStoryblok
     | ContentStoryblok
     | LastPostsStoryblok
@@ -174,7 +167,6 @@ export interface PageStoryblok {
     | SeoStoryblok
     | SocialItemStoryblok
     | TagStoryblok
-    | TeaserStoryblok
   )[];
   seo?: SeoStoryblok[];
   _uid: string;
@@ -227,12 +219,5 @@ export interface TagStoryblok {
   grid?: boolean;
   _uid: string;
   component: "tag";
-  [k: string]: any;
-}
-
-export interface TeaserStoryblok {
-  headline?: string;
-  _uid: string;
-  component: "teaser";
   [k: string]: any;
 }
