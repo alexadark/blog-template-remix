@@ -12,7 +12,7 @@ import {
   ScrollRestoration,
   useLoaderData,
 } from "@remix-run/react";
-import styles from "./styles/tailwind.css";
+
 import { storyblokInit, apiPlugin, getStoryblokApi } from "@storyblok/react";
 import { Layout } from "./components/layout";
 import {
@@ -29,6 +29,7 @@ import {
 } from "./components/bloks";
 import { implementSeo, invariantResponse } from "~/utils";
 import { GeneralErrorBoundary } from "./components/GeneralErrorBoundary";
+import styles from "./styles/tailwind.css";
 
 const isServer = typeof window === "undefined";
 
@@ -105,7 +106,6 @@ export const links: LinksFunction = () => [
     href: "https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&family=Inter:wght@400..700&display=swap",
     as: "style",
   },
-  { rel: "stylesheet", href: styles },
 ];
 
 const Document = ({ children }: { children: React.ReactNode }) => {
