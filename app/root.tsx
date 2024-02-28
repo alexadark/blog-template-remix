@@ -29,7 +29,7 @@ import {
 } from "./components/bloks";
 import { implementSeo, invariantResponse } from "~/utils";
 import { GeneralErrorBoundary } from "./components/GeneralErrorBoundary";
-import styles from "./styles/tailwind.css";
+import "./styles/tailwind.css";
 
 const isServer = typeof window === "undefined";
 
