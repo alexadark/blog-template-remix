@@ -6,7 +6,6 @@ import {
 } from "@remix-run/node";
 import {
   Links,
-  LiveReload,
   Meta,
   Outlet,
   Scripts,
@@ -122,7 +121,6 @@ const Document = ({ children }: { children: React.ReactNode }) => {
         {children}
         <ScrollRestoration />
         <Scripts />
-        <LiveReload />
       </body>
     </html>
   );

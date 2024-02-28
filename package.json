@@ -5,9 +5,10 @@
   "type": "module",
   "platform": "node",
   "scripts": {
-    "build": "remix build",
-    "dev": "remix dev --manual",
-    "start": "remix-serve ./build/index.js",
+    "build": "remix vite:build",
+    "dev": "remix vite:dev",
+    "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
+    "start": "remix-serve ./build/server/index.js",
     "typecheck": "tsc",
     "generate-sb-types": "storyblok pull-components --space=272363 && storyblok-generate-ts source=./components.272363.json target=./app/types/component-types-sb",
     "proxy": "local-ssl-proxy --source 3010 --target 3000 --cert localhost.pem --key localhost-key.pem"
@@ -42,7 +43,9 @@
     "eslint": "^8.57.0",
     "storyblok-generate-ts": "^2.0.2",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "vite": "^5.1.4",
+    "vite-tsconfig-paths": "^4.3.1"
   },
   "engines": {
     "node": ">=18.0.0"
