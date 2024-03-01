@@ -33,10 +33,11 @@ import "./styles/tailwind.css";
 
 const isServer = typeof window === "undefined";
 
-const accessToken = isServer
-  ? process.env.STORYBLOK_PREVIEW_TOKEN
-  : //@ts-ignore
-    window.env.STORYBLOK_PREVIEW_TOKEN;
+// const accessToken = isServer
+//   ? process.env.STORYBLOK_PREVIEW_TOKEN
+//   : //@ts-ignore
+//     window.env.STORYBLOK_PREVIEW_TOKEN;
+const accessToken = "m0vTtwyhWYYtVur9BRccXgtt";
 
 export const loader = async (args: LoaderFunctionArgs) => {
   invariantResponse(
@@ -95,7 +96,7 @@ const components = {
 };
 
 storyblokInit({
-  accessToken,
+  accessToken: "m0vTtwyhWYYtVur9BRccXgtt",
   use: [apiPlugin],
   components,
 });

@@ -2,6 +2,6 @@ export * from "./implementSeo";
 export * from "./getPostCardData";
 export * from "./getTotal";
 export * from "./getPerPage";
-export * from "./contentUtils";
+// export * from "./createLoader";
 export * from "./invariantResponse";
 export * from "./MDRenderer";
