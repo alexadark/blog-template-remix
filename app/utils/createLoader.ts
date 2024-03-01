@@ -1,13 +1,14 @@
-import { LoaderFunctionArgs, json } from "@remix-run/node";
+import { type LoaderFunctionArgs, json } from "@remix-run/node";
 import { getStoryblokApi } from "@storyblok/react";
-import { PostStoryblok } from "~/types";
+import { type PostStoryblok } from "~/types";
 import {
   invariantResponse,
   getPerPage,
   getTotal,
-  cacheControl,
   getPostCardData,
+  cacheControl,
 } from ".";
+import {} from "./cacheControl";
 
 export const createLoader =
   (contentType: string) =>

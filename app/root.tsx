@@ -33,11 +33,10 @@ import "./styles/tailwind.css";
 
 const isServer = typeof window === "undefined";
 
-// const accessToken = isServer
-//   ? process.env.STORYBLOK_PREVIEW_TOKEN
-//   : //@ts-ignore
-//     window.env.STORYBLOK_PREVIEW_TOKEN;
-const accessToken = "m0vTtwyhWYYtVur9BRccXgtt";
+const accessToken = isServer
+  ? process.env.STORYBLOK_PREVIEW_TOKEN
+  : //@ts-ignore
+    window.env.STORYBLOK_PREVIEW_TOKEN;
 
 export const loader = async (args: LoaderFunctionArgs) => {
   invariantResponse(
