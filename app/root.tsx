@@ -52,7 +52,6 @@ export const loader = async (args: LoaderFunctionArgs) => {
     version: "draft",
     resolve_links: "url",
   });
-  console.log("config", config.story.content.default_post_image);
 
   const { data } = await sbApi.get(`cdn/stories/home`, {
     version: "draft",
