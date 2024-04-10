@@ -95,7 +95,16 @@ export const loader = async (args: LoaderFunctionArgs) => {
 };
 
 export const meta: MetaFunction = ({ data }: { data: any }) => {
-  return implementSeo(data?.seo, data?.story?.name);
+  return [
+    ...implementSeo(data?.seo, data?.blogTitle),
+    {
+      "script:ld+json": {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        url: `${data.siteUrl ? data.siteUrl : ""}`,
+      },
+    },
+  ];
 };
 
 const components = {
