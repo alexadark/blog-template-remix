@@ -18,7 +18,7 @@ export const Post = ({ blok }: PostStoryblok) => {
   } = useMatches()[0];
 
   let { headline, categories, image, tags, author, md_content } = blok;
-  image = image || defaultPostImage;
+  image = image?.id ? image : defaultPostImage;
   console.log(image, "image");
 
   const url = typeof window !== "undefined" && window.location.href;
