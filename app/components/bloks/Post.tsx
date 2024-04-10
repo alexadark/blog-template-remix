@@ -19,7 +19,6 @@ export const Post = ({ blok }: PostStoryblok) => {
 
   let { headline, categories, image, tags, author, md_content } = blok;
   image = image?.id ? image : defaultPostImage;
-  console.log(image, "image");
 
   const url = typeof window !== "undefined" && window.location.href;
   return (

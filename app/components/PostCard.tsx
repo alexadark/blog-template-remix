@@ -28,13 +28,11 @@ export const PostCard = ({ post, grid }: PostCardType) => {
   const {
     data: { defaultPostImage },
   } = useMatches()[0];
-  console.log("useLoaderData", defaultPostImage.filename);
 
   const headline = post.headline ? post.headline : content.headline;
   const teaser = post.teaser ? post.teaser : content.teaser;
   const image = post.image?.id ? post.image : defaultPostImage;
   const categories = post.categories ? post.categories : content.categories;
-  console.log("image", post.image);
 
   return (
     <article

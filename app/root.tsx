@@ -51,7 +51,6 @@ export const loader = async (args: LoaderFunctionArgs) => {
     version: "draft",
     resolve_links: "url",
   });
-  console.log("config", config.story.content.default_post_image);
 
   const { data } = await sbApi.get(`cdn/stories/home`, {
     version: "draft",
@@ -61,19 +60,37 @@ export const loader = async (args: LoaderFunctionArgs) => {
   const seo = story?.content?.seo_plugin?.title
     ? story?.content?.seo_plugin
     : story?.content?.seo[0];
+
+  const {
+    logo,
+    header_nav,
+    social_items,
+    footer_text,
+    default_post_image,
+    posts_per_page,
+    title,
+    logo_title,
+    site_url,
+    google_analytics_code,
+    google_tag_manager,
+  } = config?.story?.content || {};
+
   return json({
     env: {
       STORYBLOK_PREVIEW_TOKEN: process.env.STORYBLOK_PREVIEW_TOKEN,
     },
-    headerNav: config?.story?.content?.header_nav,
-    socialItems: config?.story?.content?.social_items,
-    footerText: config?.story?.content?.footer_text,
-    perPage: config?.story?.content?.posts_per_page,
-    logo: config?.story?.content?.logo,
-    blogTitle: config?.story?.content?.title,
-    logoTitle: config?.story?.content?.logo_title,
-    defaultPostImage: config?.story?.content?.default_post_image,
+    headerNav: header_nav,
+    socialItems: social_items,
+    footerText: footer_text,
+    perPage: posts_per_page,
+    logo,
+    blogTitle: title,
+    logoTitle: logo_title,
+    defaultPostImage: default_post_image,
     seo,
+    siteUrl: site_url,
+    googleAnalyticsCode: google_analytics_code,
+    googleTagManager: google_tag_manager,
   });
 };
 
