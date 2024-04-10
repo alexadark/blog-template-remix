@@ -27,7 +27,10 @@
       "real_name": "all-posts",
       "component_group_uuid": null,
       "color": null,
-      "icon": null
+      "icon": null,
+      "internal_tags_list": [],
+      "internal_tag_ids": [],
+      "content_type_asset_preview": null
     },
     {
       "name": "author",
@@ -84,7 +87,10 @@
       "real_name": "author",
       "component_group_uuid": null,
       "color": "#395ece",
-      "icon": null
+      "icon": null,
+      "internal_tags_list": [],
+      "internal_tag_ids": [],
+      "content_type_asset_preview": null
     },
     {
       "name": "category",
@@ -144,15 +150,42 @@
       "real_name": "category",
       "component_group_uuid": null,
       "color": "#1b243f",
-      "icon": null
+      "icon": null,
+      "internal_tags_list": [],
+      "internal_tag_ids": [],
+      "content_type_asset_preview": null
     },
     {
       "name": "config",
       "display_name": null,
       "created_at": "2024-01-23T16:02:53.051Z",
-      "updated_at": "2024-02-09T13:05:50.796Z",
+      "updated_at": "2024-04-10T14:59:35.955Z",
       "id": 5218846,
       "schema": {
+        "site_url": {
+          "type": "text",
+          "pos": 0
+        },
+        "google_analytics_code": {
+          "type": "text",
+          "pos": 1
+        },
+        "google_tag_manager": {
+          "type": "text",
+          "pos": 2
+        },
+        "posts_per_page": {
+          "type": "number",
+          "pos": 3
+        },
+        "default_post_image": {
+          "type": "asset",
+          "filetypes": [
+            "images"
+          ],
+          "required": true,
+          "pos": 4
+        },
         "tab-acc2463a-e449-426d-a69d-2f61306438a7": {
           "display_name": "Header",
           "keys": [
@@ -160,7 +193,7 @@
             "logo",
             "title"
           ],
-          "pos": 0,
+          "pos": 5,
           "type": "tab",
           "name": "tab-acc2463a-e449-426d-a69d-2f61306438a7"
         },
@@ -171,7 +204,7 @@
           "component_whitelist": [
             "nav-item"
           ],
-          "pos": 0
+          "pos": 6
         },
         "social_items": {
           "type": "bloks",
@@ -179,14 +212,15 @@
           "restrict_components": true,
           "component_whitelist": [
             "social-item"
-          ]
+          ],
+          "pos": 7
         },
         "tab-ff1fc390-8dde-4e94-b7d0-578afe30818a": {
           "display_name": "Footer",
           "keys": [
             "footer_text"
           ],
-          "pos": 0,
+          "pos": 8,
           "type": "tab"
         },
         "footer_text": {
@@ -198,44 +232,40 @@
             "strike",
             "underline"
           ],
-          "translatable": true
+          "translatable": true,
+          "pos": 9
         },
         "tab-e9a08fd6-eac4-4a9e-b6fb-86d9f03adf98": {
           "display_name": "Settings",
           "keys": [
             "posts_per_page",
-            "default_post_image"
+            "default_post_image",
+            "site_url",
+            "google_analytics_code",
+            "google_tag_manager"
           ],
-          "pos": 0,
+          "pos": 10,
           "type": "tab"
-        },
-        "posts_per_page": {
-          "type": "number"
         },
         "logo": {
           "type": "asset",
           "filetypes": [
             "images"
-          ]
+          ],
+          "pos": 11
         },
         "title": {
-          "type": "text"
+          "type": "text",
+          "pos": 12
         },
         "tab-61f9372a-fad8-4a4c-92ad-0ba2b3232b69": {
           "display_name": "Social",
           "keys": [
             "social_items"
           ],
-          "pos": 1,
+          "pos": 13,
           "type": "tab",
           "name": "tab-61f9372a-fad8-4a4c-92ad-0ba2b3232b69"
-        },
-        "default_post_image": {
-          "type": "asset",
-          "filetypes": [
-            "images"
-          ],
-          "required": true
         }
       },
       "image": null,
@@ -248,7 +278,10 @@
       "real_name": "config",
       "component_group_uuid": null,
       "color": "#1b243f",
-      "icon": "block-keyboard"
+      "icon": "block-keyboard",
+      "internal_tags_list": [],
+      "internal_tag_ids": [],
+      "content_type_asset_preview": null
     },
     {
       "name": "content",
@@ -277,6 +310,9 @@
       "component_group_uuid": "d9e789f7-6ebc-4761-9829-c875e43d005c",
       "color": null,
       "icon": null,
+      "internal_tags_list": [],
+      "internal_tag_ids": [],
+      "content_type_asset_preview": null,
       "component_group_name": "post-content"
     },
     {
@@ -310,7 +346,10 @@
       "real_name": "last-posts",
       "component_group_uuid": null,
       "color": null,
-      "icon": null
+      "icon": null,
+      "internal_tags_list": [],
+      "internal_tag_ids": [],
+      "content_type_asset_preview": null
     },
     {
       "name": "nav-item",
@@ -354,7 +393,10 @@
       "real_name": "nav-item",
       "component_group_uuid": null,
       "color": null,
-      "icon": null
+      "icon": null,
+      "internal_tags_list": [],
+      "internal_tag_ids": [],
+      "content_type_asset_preview": null
     },
     {
       "name": "page",
@@ -395,7 +437,10 @@
       "real_name": "page",
       "component_group_uuid": null,
       "color": "#00b3b0",
-      "icon": null
+      "icon": null,
+      "internal_tags_list": [],
+      "internal_tag_ids": [],
+      "content_type_asset_preview": null
     },
     {
       "name": "post",
@@ -485,13 +530,16 @@
       "real_name": "Post",
       "component_group_uuid": null,
       "color": "#ffac00",
-      "icon": null
+      "icon": null,
+      "internal_tags_list": [],
+      "internal_tag_ids": [],
+      "content_type_asset_preview": null
     },
     {
       "name": "seo",
       "display_name": null,
       "created_at": "2024-01-23T16:02:53.234Z",
-      "updated_at": "2024-01-23T16:02:53.234Z",
+      "updated_at": "2024-04-10T14:57:42.255Z",
       "id": 5218855,
       "schema": {
         "title": {
@@ -526,6 +574,9 @@
           "description": "An image URL which should represent your object.",
           "key": "twitter_image",
           "pos": 6
+        },
+        "canonical_url": {
+          "type": "text"
         }
       },
       "image": null,
@@ -538,7 +589,10 @@
       "real_name": "seo",
       "component_group_uuid": null,
       "color": null,
-      "icon": null
+      "icon": null,
+      "internal_tags_list": [],
+      "internal_tag_ids": [],
+      "content_type_asset_preview": null
     },
     {
       "name": "social-item",
@@ -573,7 +627,10 @@
       "real_name": "social-item",
       "component_group_uuid": null,
       "color": null,
-      "icon": null
+      "icon": null,
+      "internal_tags_list": [],
+      "internal_tag_ids": [],
+      "content_type_asset_preview": null
     },
     {
       "name": "tag",
@@ -626,7 +683,10 @@
       "real_name": "tag",
       "component_group_uuid": null,
       "color": "#ff6159",
-      "icon": null
+      "icon": null,
+      "internal_tags_list": [],
+      "internal_tag_ids": [],
+      "content_type_asset_preview": null
     }
   ]
 }

@@ -10,13 +10,20 @@ export interface AllPostsStoryblok {
 }
 
 export interface AssetStoryblok {
-  alt?: string;
-  copyright?: string;
+  _uid?: string;
   id: number;
-  filename: string;
+  alt?: string;
   name: string;
-  title?: string;
   focus?: string;
+  source?: string;
+  title?: string;
+  filename: string;
+  copyright?: string;
+  fieldtype?: string;
+  meta_data?: null | {
+    [k: string]: any;
+  };
+  is_external_url?: boolean;
   [k: string]: any;
 }
 
@@ -65,13 +72,16 @@ export interface RichtextStoryblok {
 }
 
 export interface ConfigStoryblok {
+  site_url?: string;
+  google_analytics_code?: string;
+  google_tag_manager?: string;
+  posts_per_page?: string;
+  default_post_image: AssetStoryblok;
   header_nav?: NavItemStoryblok[];
   social_items?: SocialItemStoryblok[];
   footer_text?: RichtextStoryblok;
-  posts_per_page?: string;
   logo?: AssetStoryblok;
   title?: string;
-  default_post_image: AssetStoryblok;
   _uid: string;
   component: "config";
   [k: string]: any;
@@ -83,6 +93,7 @@ export type MultilinkStoryblok =
       cached_url?: string;
       anchor?: string;
       linktype?: "story";
+      target?: "_self" | "_blank";
       story?: {
         name: string;
         created_at?: string;
@@ -119,11 +130,13 @@ export type MultilinkStoryblok =
       cached_url?: string;
       anchor?: string;
       linktype?: "asset" | "url";
+      target?: "_self" | "_blank";
       [k: string]: any;
     }
   | {
       email?: string;
       linktype?: "email";
+      target?: "_self" | "_blank";
       [k: string]: any;
     };
 
@@ -198,6 +211,7 @@ export interface SeoStoryblok {
   twitter_title?: string;
   twitter_description?: string;
   twitter_image?: AssetStoryblok;
+  canonical_url?: string;
   _uid: string;
   component: "seo";
   [k: string]: any;
