@@ -54,9 +54,9 @@ export const PostsList = ({ grid, uuid }: PostsListType) => {
     fetchPosts(nextPage, uuid || "");
   };
   return (
-    <div>
+    <div itemScope itemType="http://schema.org/CollectionPage">
       <div className={grid ? "grid sm:grid-cols-2 gap-5" : ""}>
-        {posts?.map((p: PostStoryblok) => {
+        {posts?.map((p: PostStoryblok, index: number) => {
           return <PostCard post={p} key={p?.id} grid={grid} />;
         })}
       </div>

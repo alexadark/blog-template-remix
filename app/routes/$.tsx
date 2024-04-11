@@ -13,8 +13,10 @@ import { GeneralErrorBoundary } from "~/components/GeneralErrorBoundary";
 import { NotFoundPage } from "~/components/NotFoundPage";
 import { cacheControl } from "~/utils/cacheControl";
 
-export const loader = async ({ params }: LoaderFunctionArgs) => {
+export const loader = async ({ params, request }: LoaderFunctionArgs) => {
   let slug = params["*"] ?? "home";
+  let url = new URL(request.url);
+  url = url.href; // This gives you the full URL string
 
   const sbApi = getStoryblokApi();
 
@@ -59,6 +61,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
         getPostCardData(p)
       ),
       seo,
+      url,
     },
     { headers }
   );
@@ -69,7 +72,16 @@ export let headers: HeadersFunction = ({ loaderHeaders }) => {
 };
 
 export const meta: MetaFunction = ({ data }: { data: any }) => {
-  return implementSeo(data?.seo, data?.name);
+  return [
+    ...implementSeo(data?.seo, data?.name),
+    {
+      "script:ld+json": {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        url: `${data.url}`,
+      },
+    },
+  ];
 };
 
 const RootPage = () => {

@@ -39,15 +39,21 @@ export const PostCard = ({ post, grid }: PostCardType) => {
       className={`${
         !grid && "mb-7"
       } bg-dark-50 border border-dark-25  px-5 py-7 rounded-lg shadow-xl duration-500 transition-[box-shadow,transform] hover:shadow-dark-25  relative hover:-translate-y-1`}
+      itemScope
+      itemType="http://schema.org/BlogPosting"
     >
       <div
         className={` ${
           grid ? "space-y-3" : "flex flex-wrap"
         } justify-between items-center gap-3 mb-4`}
       >
-        <div className="mr-5 text-lg font-bold text-primary">
+        <time
+          className="mr-5 text-lg font-bold text-primary"
+          itemProp="datePublished"
+          dateTime={format(new Date(date), "yyyy-MM-dd")}
+        >
           {format(new Date(date), "MMMM dd, yyyy")}
-        </div>
+        </time>
         <div className="">
           <Categories categories={categories} />
         </div>
@@ -55,31 +61,33 @@ export const PostCard = ({ post, grid }: PostCardType) => {
       <LinkWrapper url={url?.url} slug={full_slug}>
         <div className={`${!grid && "md:flex justify-between gap-5"}`}>
           {image && (
-            <div className="flex items-center">
+            <div
+              className="flex items-center"
+              itemProp="image"
+              itemScope
+              itemType="http://schema.org/ImageObject"
+            >
               <picture>
                 <source
                   media="(min-width: 768px)"
                   srcSet={`${image?.filename}/m/400x200/smart/filters:quality(60)/`}
-                />
-                <source
-                  media="(max-width: 767px)"
-                  srcSet={`${image?.filename}/m/767x380/smart/filters:quality(60)/`}
-                />
-                <source
-                  media="(max-width: 400px)"
-                  srcSet={`${image?.filename}/m/400x200/smart/filters:quality(60)/`}
+                  itemProp="contentUrl"
                 />
                 <img
                   src={`${image?.filename}/m/750x400/smart/filters:quality(60)/`}
                   alt={image?.alt}
                   className="rounded-lg"
+                  itemProp="url"
                 />
               </picture>
+              <meta itemProp="description" content={image?.alt} />
             </div>
           )}
           <div>
-            <h2 className="font-bold text-2xl mb-2">{headline}</h2>
-            <p>{teaser}</p>
+            <h2 className="font-bold text-2xl mb-2" itemProp="headline">
+              {headline}
+            </h2>
+            <p itemProp="description">{teaser}</p>
           </div>
         </div>
       </LinkWrapper>

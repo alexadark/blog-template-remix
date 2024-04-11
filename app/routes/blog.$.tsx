@@ -82,7 +82,35 @@ export let headers: HeadersFunction = ({ loaderHeaders }) => {
   return { "Cache-Control": loaderHeaders.get("Cache-Control") };
 };
 export const meta: MetaFunction = ({ data }: { data: any }) => {
-  return implementSeo(data?.seo, data?.name);
+  console.log("data blok", data);
+  const jsonLD =
+    data.blok.component === "post"
+      ? {
+          "@context": "http://schema.org",
+          "@type": "BlogPosting",
+          mainEntityOfPage: {
+            "@type": "WebPage",
+            "@id": data.url,
+          },
+          headline: data.blok.headline,
+          description: data.blok.teaser,
+          author: {
+            "@type": "Person",
+            name: data.blok.author.name,
+          },
+          datePublished: data.blok.publishDate,
+        }
+      : {
+          "@context": "http://schema.org",
+          "@type": "Blog",
+          url: data.url,
+        };
+  return [
+    ...implementSeo(data?.seo, data?.name),
+    {
+      "script:ld+json": jsonLD,
+    },
+  ];
 };
 
 const PostPage = () => useStoryblokData("routes/blog.$");

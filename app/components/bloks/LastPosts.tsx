@@ -9,11 +9,26 @@ export const LastPosts = ({ blok }: LastPostsStoryblok) => {
   const { lastPosts } = useLoaderData<typeof loader>();
 
   return (
-    <div {...storyblokEditable(blok)} className="center-container">
+    <div
+      {...storyblokEditable(blok)}
+      className="center-container"
+      itemScope
+      itemType="http://schema.org/ItemList"
+    >
       <h2>{headline}</h2>
       <div className={grid && "grid sm:grid-cols-2 gap-5"}>
-        {lastPosts.map((post: PostStoryblok) => {
-          return <PostCard post={post} key={post.id} grid={grid} />;
+        {lastPosts.map((post: PostStoryblok, index: number) => {
+          return (
+            <div
+              itemProp="itemListElement"
+              itemScope
+              itemType="http://schema.org/ListItem"
+              key={post.id}
+            >
+              <meta itemProp="position" content={String(index + 1)} />
+              <PostCard post={post} grid={grid} />
+            </div>
+          );
         })}
       </div>
       <div className="flex justify-center mt-10">
