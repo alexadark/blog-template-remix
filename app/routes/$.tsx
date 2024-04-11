@@ -3,6 +3,7 @@ import {
   type HeadersFunction,
   type MetaFunction,
   type LoaderFunctionArgs,
+  type LoaderFunction,
 } from "@remix-run/node";
 import { getStoryblokApi } from "@storyblok/react";
 import { useStoryblokData } from "~/hooks";
@@ -13,7 +14,10 @@ import { GeneralErrorBoundary } from "~/components/GeneralErrorBoundary";
 import { NotFoundPage } from "~/components/NotFoundPage";
 import { cacheControl } from "~/utils/cacheControl";
 
-export const loader = async ({ params, request }: LoaderFunctionArgs) => {
+export const loader: LoaderFunction = async ({
+  params,
+  request,
+}: LoaderFunctionArgs) => {
   let slug = params["*"] ?? "home";
   let url = new URL(request.url);
   url = url.href; // This gives you the full URL string
