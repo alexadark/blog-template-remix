@@ -78,6 +78,9 @@ export let headers: HeadersFunction = ({ loaderHeaders }) => {
 };
 
 export const meta: MetaFunction = ({ data }: { data: any }) => {
+  if (!data) {
+    return [];
+  }
   return [
     ...implementSeo(data?.seo, data?.name),
     {

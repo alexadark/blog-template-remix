@@ -12,7 +12,9 @@ export const loader: LoaderFunction = async ({
     version: "draft",
     resolve_links: "url",
   });
-  const robotsTxt = config?.story?.content?.robots_txt;
+  console.log("config", config);
+
+  const robotsTxt = config?.story?.content?.robots_txt_content;
 
   const robotText = `
     ${robotsTxt}
