@@ -5,7 +5,6 @@ export const loader: LoaderFunction = async ({
   request,
 }: LoaderFunctionArgs) => {
   let url = new URL(request.url);
-  console.log("url", url);
 
   const sbApi = getStoryblokApi();
   const { data: config } = await sbApi.get(`cdn/stories/config`, {
