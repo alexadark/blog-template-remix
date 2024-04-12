@@ -61,6 +61,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
   const seo = story?.content?.seo_plugin?.title
     ? story?.content?.seo_plugin
     : story?.content?.seo[0];
+  const noFollow = story?.content?.seo[0]?.no_follow;
 
   const posts = blog?.stories?.map((p: PostStoryblok) => getPostCardData(p));
 
@@ -74,6 +75,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
       total,
       perPage,
       seo,
+      noFollow,
     },
     { headers }
   );
@@ -109,6 +111,10 @@ export const meta: MetaFunction = ({ data }: { data: any }) => {
     ...implementSeo(data?.seo, data?.name),
     {
       "script:ld+json": jsonLD,
+    },
+    data.noFollow && {
+      name: "robots",
+      content: "noindex, nofollow",
     },
   ];
 };

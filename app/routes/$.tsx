@@ -56,6 +56,7 @@ export const loader: LoaderFunction = async ({
   const seo = story?.content?.seo_plugin?.title
     ? story?.content?.seo_plugin
     : story?.content?.seo[0];
+  const noFollow = story?.content?.seo[0]?.no_follow;
 
   return json(
     {
@@ -66,6 +67,7 @@ export const loader: LoaderFunction = async ({
       ),
       seo,
       url,
+      noFollow,
     },
     { headers }
   );
@@ -84,6 +86,10 @@ export const meta: MetaFunction = ({ data }: { data: any }) => {
         "@type": "WebPage",
         url: `${data.url}`,
       },
+    },
+    data.noFollow && {
+      name: "robots",
+      content: "noindex, nofollow",
     },
   ];
 };

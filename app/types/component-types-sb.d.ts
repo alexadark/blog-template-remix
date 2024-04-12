@@ -210,8 +210,9 @@ export interface SeoStoryblok {
   og_description?: string;
   twitter_title?: string;
   twitter_description?: string;
-  twitter_image?: AssetStoryblok;
   canonical_url?: string;
+  twitter_image?: AssetStoryblok;
+  no_follow?: boolean;
   _uid: string;
   component: "seo";
   [k: string]: any;
