@@ -1,4 +1,5 @@
 import { type LoaderFunction, type LoaderFunctionArgs } from "@remix-run/node";
+import { getStoryblokApi } from "@storyblok/react";
 
 export const loader: LoaderFunction = async ({
   request,
@@ -6,14 +7,16 @@ export const loader: LoaderFunction = async ({
   let url = new URL(request.url);
   console.log("url", url);
 
+  const sbApi = getStoryblokApi();
+  const { data: config } = await sbApi.get(`cdn/stories/config`, {
+    version: "draft",
+    resolve_links: "url",
+  });
+  const robotsTxt = config?.story?.content?.robots_txt;
+
   const robotText = `
-    User-agent: Googlebot
-    Disallow: /nogooglebot/
-
-    User-agent: *
-    Allow: /
-
-    Sitemap: ${url.origin}/sitemap.xml
+    ${robotsTxt}
+    Sitemap: ${url?.origin}/sitemap.xml
     `;
   // return the text content, a status 200 success response, and set the content type to text/plain
   return new Response(robotText, {
