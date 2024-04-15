@@ -136,6 +136,7 @@ export const links: LinksFunction = () => [
 ];
 
 const Document = ({ children }: { children: React.ReactNode }) => {
+  const { googleAnalyticsCode } = useLoaderData<typeof loader>();
   return (
     <html lang="en">
       <head>
@@ -145,7 +146,7 @@ const Document = ({ children }: { children: React.ReactNode }) => {
         <Links />
         <script
           async
-          src="https://www.googletagmanager.com/gtag/js?id=G-8SJ17Q9M5G"
+          src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsCode}`}
         ></script>
 
         <script
@@ -154,7 +155,7 @@ const Document = ({ children }: { children: React.ReactNode }) => {
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-8SJ17Q9M5G');
+  gtag('config', ${googleAnalyticsCode});
 `,
           }}
         ></script>
