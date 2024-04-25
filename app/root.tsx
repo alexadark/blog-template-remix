@@ -13,7 +13,7 @@ import {
   ScrollRestoration,
   useLoaderData,
 } from "@remix-run/react";
-import styles from "./tailwind.css?url";
+import styles from "./styles/tailwind.css";
 import { storyblokInit, apiPlugin, getStoryblokApi } from "@storyblok/react";
 import { Layout } from "./components/layout";
 import {
