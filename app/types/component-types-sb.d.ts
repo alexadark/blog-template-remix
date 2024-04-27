@@ -72,11 +72,12 @@ export interface RichtextStoryblok {
 }
 
 export interface ConfigStoryblok {
+  robots_txt_content?: string;
   site_url?: string;
   google_analytics_code?: string;
   google_tag_manager?: string;
-  posts_per_page?: string;
   default_post_image: AssetStoryblok;
+  posts_per_page?: string;
   header_nav?: NavItemStoryblok[];
   social_items?: SocialItemStoryblok[];
   footer_text?: RichtextStoryblok;
