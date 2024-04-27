@@ -3,9 +3,9 @@
     {
       "name": "all-posts",
       "display_name": null,
-      "created_at": "2024-04-27T09:34:38.833Z",
-      "updated_at": "2024-04-27T09:34:38.833Z",
-      "id": 5720397,
+      "created_at": "2024-01-23T16:02:53.258Z",
+      "updated_at": "2024-02-05T09:12:11.649Z",
+      "id": 5218856,
       "schema": {
         "headline": {
           "type": "text"
@@ -35,9 +35,9 @@
     {
       "name": "author",
       "display_name": null,
-      "created_at": "2024-04-27T09:34:38.914Z",
-      "updated_at": "2024-04-27T09:34:38.914Z",
-      "id": 5720402,
+      "created_at": "2024-01-23T16:02:53.112Z",
+      "updated_at": "2024-02-05T09:21:29.726Z",
+      "id": 5218849,
       "schema": {
         "avatar": {
           "type": "asset",
@@ -95,9 +95,9 @@
     {
       "name": "category",
       "display_name": null,
-      "created_at": "2024-04-27T09:34:38.930Z",
-      "updated_at": "2024-04-27T09:34:38.930Z",
-      "id": 5720403,
+      "created_at": "2024-01-23T16:02:53.094Z",
+      "updated_at": "2024-01-23T16:02:53.094Z",
+      "id": 5218848,
       "schema": {
         "seo": {
           "type": "bloks",
@@ -158,26 +158,24 @@
     {
       "name": "config",
       "display_name": null,
-      "created_at": "2024-04-27T09:34:38.766Z",
-      "updated_at": "2024-04-27T09:34:38.766Z",
-      "id": 5720393,
+      "created_at": "2024-01-23T16:02:53.051Z",
+      "updated_at": "2024-04-10T14:59:35.955Z",
+      "id": 5218846,
       "schema": {
-        "robots_txt_content": {
-          "type": "textarea",
-          "default_value": "User-agent: *\nAllow: /",
-          "pos": 0,
-          "description": "Write here your robots.txt directives without the Sitemap as it's already included\nYou can find information about how robots.txt works here:\nhttps://developers.google.com/search/docs/crawling-indexing/robots/intro"
-        },
         "site_url": {
           "type": "text",
-          "pos": 1
+          "pos": 0
         },
         "google_analytics_code": {
           "type": "text",
-          "pos": 2
+          "pos": 1
         },
         "google_tag_manager": {
           "type": "text",
+          "pos": 2
+        },
+        "posts_per_page": {
+          "type": "number",
           "pos": 3
         },
         "default_post_image": {
@@ -188,10 +186,6 @@
           "required": true,
           "pos": 4
         },
-        "posts_per_page": {
-          "type": "number",
-          "pos": 5
-        },
         "tab-acc2463a-e449-426d-a69d-2f61306438a7": {
           "display_name": "Header",
           "keys": [
@@ -199,37 +193,9 @@
             "logo",
             "title"
           ],
-          "pos": 6,
+          "pos": 5,
           "type": "tab",
           "name": "tab-acc2463a-e449-426d-a69d-2f61306438a7"
-        },
-        "tab-ff1fc390-8dde-4e94-b7d0-578afe30818a": {
-          "display_name": "Footer",
-          "keys": [
-            "footer_text"
-          ],
-          "pos": 7,
-          "type": "tab",
-          "name": "tab-ff1fc390-8dde-4e94-b7d0-578afe30818a"
-        },
-        "tab-61f9372a-fad8-4a4c-92ad-0ba2b3232b69": {
-          "display_name": "Social",
-          "keys": [
-            "social_items"
-          ],
-          "pos": 8,
-          "type": "tab",
-          "name": "tab-61f9372a-fad8-4a4c-92ad-0ba2b3232b69"
-        },
-        "tab-0b1fff29-8381-49dc-bcf7-aa7c8ef688e4": {
-          "display_name": "Robot.txt",
-          "keys": [
-            "robot_txt_content",
-            "robots_txt_content"
-          ],
-          "pos": 9,
-          "type": "tab",
-          "name": "tab-0b1fff29-8381-49dc-bcf7-aa7c8ef688e4"
         },
         "header_nav": {
           "type": "bloks",
@@ -238,7 +204,7 @@
           "component_whitelist": [
             "nav-item"
           ],
-          "pos": 10
+          "pos": 6
         },
         "social_items": {
           "type": "bloks",
@@ -247,7 +213,15 @@
           "component_whitelist": [
             "social-item"
           ],
-          "pos": 11
+          "pos": 7
+        },
+        "tab-ff1fc390-8dde-4e94-b7d0-578afe30818a": {
+          "display_name": "Footer",
+          "keys": [
+            "footer_text"
+          ],
+          "pos": 8,
+          "type": "tab"
         },
         "footer_text": {
           "type": "richtext",
@@ -259,18 +233,39 @@
             "underline"
           ],
           "translatable": true,
-          "pos": 12
+          "pos": 9
+        },
+        "tab-e9a08fd6-eac4-4a9e-b6fb-86d9f03adf98": {
+          "display_name": "Settings",
+          "keys": [
+            "posts_per_page",
+            "default_post_image",
+            "site_url",
+            "google_analytics_code",
+            "google_tag_manager"
+          ],
+          "pos": 10,
+          "type": "tab"
         },
         "logo": {
           "type": "asset",
           "filetypes": [
             "images"
           ],
-          "pos": 13
+          "pos": 11
         },
         "title": {
           "type": "text",
-          "pos": 14
+          "pos": 12
+        },
+        "tab-61f9372a-fad8-4a4c-92ad-0ba2b3232b69": {
+          "display_name": "Social",
+          "keys": [
+            "social_items"
+          ],
+          "pos": 13,
+          "type": "tab",
+          "name": "tab-61f9372a-fad8-4a4c-92ad-0ba2b3232b69"
         }
       },
       "image": null,
@@ -291,9 +286,9 @@
     {
       "name": "content",
       "display_name": null,
-      "created_at": "2024-04-27T09:34:38.899Z",
-      "updated_at": "2024-04-27T09:34:38.899Z",
-      "id": 5720401,
+      "created_at": "2024-01-23T16:02:53.132Z",
+      "updated_at": "2024-02-01T16:23:45.421Z",
+      "id": 5218850,
       "schema": {
         "text": {
           "translatable": true,
@@ -323,9 +318,9 @@
     {
       "name": "last-posts",
       "display_name": null,
-      "created_at": "2024-04-27T09:34:38.817Z",
-      "updated_at": "2024-04-27T09:34:38.817Z",
-      "id": 5720396,
+      "created_at": "2024-01-23T16:02:53.282Z",
+      "updated_at": "2024-01-23T16:02:53.282Z",
+      "id": 5218857,
       "schema": {
         "headline": {
           "type": "text",
@@ -359,9 +354,9 @@
     {
       "name": "nav-item",
       "display_name": null,
-      "created_at": "2024-04-27T09:34:38.882Z",
-      "updated_at": "2024-04-27T09:34:38.882Z",
-      "id": 5720400,
+      "created_at": "2024-01-23T16:02:53.152Z",
+      "updated_at": "2024-01-23T16:02:53.152Z",
+      "id": 5218851,
       "schema": {
         "link": {
           "translatable": true,
@@ -406,9 +401,9 @@
     {
       "name": "page",
       "display_name": null,
-      "created_at": "2024-04-27T09:34:38.848Z",
-      "updated_at": "2024-04-27T09:34:38.848Z",
-      "id": 5720398,
+      "created_at": "2024-01-23T16:02:53.213Z",
+      "updated_at": "2024-01-23T16:02:53.213Z",
+      "id": 5218854,
       "schema": {
         "body": {
           "type": "bloks"
@@ -450,9 +445,9 @@
     {
       "name": "post",
       "display_name": "Post",
-      "created_at": "2024-04-27T09:34:38.801Z",
-      "updated_at": "2024-04-27T09:34:38.801Z",
-      "id": 5720395,
+      "created_at": "2024-01-23T16:02:53.021Z",
+      "updated_at": "2024-01-23T16:06:06.344Z",
+      "id": 5218845,
       "schema": {
         "headline": {
           "translatable": true,
@@ -543,9 +538,9 @@
     {
       "name": "seo",
       "display_name": null,
-      "created_at": "2024-04-27T09:34:38.783Z",
-      "updated_at": "2024-04-27T09:34:38.783Z",
-      "id": 5720394,
+      "created_at": "2024-01-23T16:02:53.234Z",
+      "updated_at": "2024-04-12T08:43:41.034Z",
+      "id": 5218855,
       "schema": {
         "title": {
           "translatable": true,
@@ -605,9 +600,9 @@
     {
       "name": "social-item",
       "display_name": null,
-      "created_at": "2024-04-27T09:34:38.867Z",
-      "updated_at": "2024-04-27T09:34:38.867Z",
-      "id": 5720399,
+      "created_at": "2024-01-23T16:02:53.169Z",
+      "updated_at": "2024-01-23T16:02:53.169Z",
+      "id": 5218852,
       "schema": {
         "name": {
           "type": "text",
@@ -643,9 +638,9 @@
     {
       "name": "tag",
       "display_name": null,
-      "created_at": "2024-04-27T09:34:38.946Z",
-      "updated_at": "2024-04-27T09:34:38.946Z",
-      "id": 5720404,
+      "created_at": "2024-01-23T16:02:53.077Z",
+      "updated_at": "2024-01-23T16:02:53.077Z",
+      "id": 5218847,
       "schema": {
         "seo": {
           "type": "bloks",
